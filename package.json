@@ -1,0 +1,38 @@
+{
+  "name": "vue-c3js",
+  "version": "0.0.1",
+  "description": "c3js wrapper for vuejs.",
+  "main": "./dist/vue-c3js.js",
+  "scripts": {
+    "test": "test",
+    "dev:hot": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "example": "cross-env NODE_ENV=production webpack --progress --hide-modules --config  ./build/webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config  ./build/webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreas2510/vue-c3js.git"
+  },
+  "author": "Andreas Papadopoulos <andreaspapadopoulos1@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andreas2510/vue-c3js/issues"
+  },
+  "homepage": "https://github.com/andreas2510/vue-c3js#readme",
+  "dependencies": {
+    "c3": "^0.4.15",
+    "vue": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-env": "^1.5.1",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "vue-loader": "^12.1.0",
+    "vue-template-compiler": "^2.3.3",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  }
+}

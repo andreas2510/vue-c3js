@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-c3js</title>
+</head>
+<body>
+    <div id="app">
+        <h1>vue-c3js</h1>
+        <p>{{ message }}</p>
+        <div>
+            <c3-chart id="charty"
+                      :chart-data="chartData"
+
+                      :padding-top="30"
+                      :padding-right="30"
+                      :padding-bottom="30"
+                      :padding-left="30"
+                      :color-pattern="['#1f77b4', '#aec7e8']"
+                      :interaction-enabled="true"
+                      transition-duration="300"
+
+                      :labels="false"
+                      type="bar"
+
+                      :axis-rotated="false"
+                      :show-x-axis="true"
+                      :show-y-axis="true"
+                      :axis-x-tick-centered="false"
+
+                      :show-grid-x="false"
+                      :show-grid-y="false"
+
+                      :show-legend="true"
+                      legend-position="bottom"
+
+                      :show-tooltip="true"
+                      :tooltip-grouped="true"
+
+                      :show-subchart="false"
+                      :subchart-height="30"
+
+                      :zoom-enabled="false"
+                      :zoom-rescale="false"
+                      :zoom-extent="[1, 100]"
+
+                      :show-point="true"
+                      :point-radius="3"
+                      :point-focus-expand-enabled="true"
+                      :point-focus-expand-radius="4"
+                      :point-focus-select-radius="8"
+                      >
+                <c3-line prop="data1" name="Data 1" custom-class="extra-class"></c3-line>
+                <c3-spline prop="data2" name="Data 2"></c3-spline>
+            </c3-chart>
+            <!--
+                      @tooltip-format-title="formatTooltipTitle"
+                      :tooltip-formatted-title="tooltipTitle"
+                      @oninit="chartInit"
+                      @onrendered="chartInit"
+                      @onmouseover="chartInit"
+                      @onmouseout="chartInit"
+                      @onresize="chartInit"
+                      @onresized="chartInit"
+                      @data-onclick="dataCallbackTest"
+                      @data-onmouseover="dataCallbackTest"
+                      @data-onmouseout="dataCallbackTest"
+            -->
+        </div>
+    </div>
+    <script src="./build/build.js"></script>
+</body>
+</html>
