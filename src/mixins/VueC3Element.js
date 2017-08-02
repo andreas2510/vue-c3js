@@ -19,6 +19,9 @@ export default {
         customClass: {
             type: String
         },
+        groups: {
+            type: String
+        }
     },
 
     data: function data() {
@@ -53,6 +56,10 @@ export default {
 
             if (this.optionExists(this.customClass)) {
                 _options.customClass = this.customClass
+            }
+
+            if (this.optionExists(this.groups)) {
+                _options.groups = this.groups
             }
 
             return _options

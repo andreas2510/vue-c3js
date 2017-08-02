@@ -13,12 +13,20 @@
 
     import VueC3Line from './VueC3Line'
     import VueC3Spline from './VueC3Spline'
+    import VueC3Bar from './VueC3Bar'
+    import VueC3Area from './VueC3Area'
+    import VueC3AreaSpline from './VueC3AreaSpline'
+    import VueC3Scatter from './VueC3Scatter'
+    import VueC3Step from './VueC3Step'
+    import VueC3Pie from './VueC3Pie'
+    import VueC3Donut from './VueC3Donut'
+    import VueC3Gauge from './VueC3Gauge'
 
     var c3 = require("c3")
 
     export default {
 
-        components: { VueC3Line, VueC3Spline },
+        components: { VueC3Line, VueC3Spline, VueC3Bar, VueC3Area, VueC3AreaSpline, VueC3Scatter, VueC3Step, VueC3Pie, VueC3Donut, VueC3Gauge },
 
         name: "c3-chart",
 
@@ -55,15 +63,29 @@
                 type: Array
             },
             interactionEnabled: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             transitionDuration: {
                 type: Number
             },
 
             // Data
+            columns: {
+                type: Array,
+                default: null
+            },
+            rows: {
+                type: Array,
+                default: null
+            },
+            json: {
+                type: Object,
+                default: null
+            },
             labels: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             type: {
                 type: String
@@ -71,28 +93,34 @@
 
             // Axis
             axisRotated: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             showXAxis: {
-                type: Boolean
+                type: Boolean,
+                default: null,
             },
             showYAxis: {
-                type: Boolean
+                type: Boolean,
+                default: null,
             },
             axisXTickCentered: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             axisXTickCount: {
                 type: Number
             },
             axisXTickFit: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             axisXTickRotate: {
                 type: Number
             },
             axisXTickOuter: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             axisXTickMax: {
                 type: Number
@@ -103,15 +131,18 @@
 
             // Grid
             showGridX: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             showGridY: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
 
             // Legend
             showLegend: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             legendPosition: {
                 type: String
@@ -119,10 +150,12 @@
 
             // Tooltip
             showTooltip: {
-                type: Boolean
+                type: Boolean,
+                default: null,
             },
             tooltipGrouped: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             tooltipFormattedTitle: {
                 type: String,
@@ -130,7 +163,8 @@
 
             // Subchart
             showSubchart: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             subchartHeight: {
                 type: Number
@@ -138,10 +172,12 @@
 
             // Zoom
             zoomEnabled: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             zoomRescale: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             zoomExtent: {
                 type: Array
@@ -149,13 +185,15 @@
 
             // Point
             showPoint: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             pointRadius: {
                 type: Number
             },
             pointFocusExpandEnabled: {
-                type: Boolean
+                type: Boolean,
+                default: null
             },
             pointFocusExpandRadius: {
                 type: Number
@@ -184,7 +222,7 @@
 
                     names: {},
                     classes: {},
-                    // groups: {},
+                    groups: {},
                     // axes: {},
                     label: "",
                     type: "",
@@ -216,17 +254,20 @@
                 if (options.hasOwnProperty('customClass') && undefined !== options.customClass) {
                     this.data.classes[prop] = options.customClass
                 }
+
+                if (options.hasOwnProperty('groups') && undefined !== options.groups) {
+                    if (!this.data.groups.hasOwnProperty(options.groups)) {
+                        this.data.groups[options.groups] = []
+                    }
+                    this.data.groups[options.groups].push(prop)
+                }
             })
         },
 
         mounted() {
-            this.data.columns = this.chartData
-
             var chart = c3.generate(this.options)
-
             var el = document.getElementById(this.bindTo)
             el.chartdata = chart
-
             this.isReady = true
         },
 
@@ -251,19 +292,59 @@
                 return obj;
             },
 
+            removeEmptyKeys: function(objct) {
+                var that = this
+                var obj = objct
+                Object.keys(obj).forEach(key => {
+                    if (obj[key] && typeof obj[key] === 'object' && Object.keys(obj[key]).length > 0) {
+                        that.removeEmptyKeys(obj[key])
+                    } else if (null === obj[key] || undefined === obj[key] || Object.keys(obj[key]).length === 0) {
+                        delete obj[key]
+                    }
+                });
+                return obj;
+            },
+
             /**
              * [refresh description]
              * @return {[type]} [description]
              */
             refresh: function() {
-                var chart = document.getElementById(this.bindTo).chartdata
-                chart.load({
-                    columns: this.data.columns
-                })
-            }
+                //this.chart.unload()
+                var _loadOptions = this.dataOptions //_loadOptions.columns = this.drawableColumns
+                this.chart.load(_loadOptions)
+                // this.chart.flush()
+            },
         },
 
         computed: {
+
+            // Chart Object
+
+            chart: function() {
+                return document.getElementById(this.bindTo).chartdata
+            },
+
+            // Data
+
+            drawableColumns: function() {
+                var _types = Object.keys(this.data.types)
+                return this.columns.filter(function (col) {
+                    if (_types.includes(col[0])) {
+                        return col
+                    }
+                })
+            },
+
+            drawableRows: function() {
+                return this.rows
+            },
+
+            drawableJson: function() {
+                return this.json
+            },
+
+            // Options
 
             chartOptions: function() {
                 var _chartOptions = {}
@@ -301,7 +382,7 @@
                     _chartOptions.transition.duration = this.transitionDuration
                 }
 
-                return _chartOptions
+                return this.removeEmptyKeys(_chartOptions)
             },
 
             dataOptions: function() {
@@ -314,7 +395,35 @@
                     _dataOptions.type = this.type
                 }
 
-                return _dataOptions
+                // dont mess with the actual data
+                var _tempData = {}
+                //_tempData.columns = this.chartData
+                //_tempData.columns = this.columns
+
+                if (this.propExists(this.columns)) {
+                    _tempData.columns = this.drawableColumns
+                }
+
+                if (this.propExists(this.rows)) {
+                    _tempData.rows = this.drawableRows
+                }
+
+                if (this.propExists(this.json)) {
+                    _tempData.json = this.drawableJson
+                }
+
+                _tempData.groups = Object.values(this.data.groups)
+
+                //_tempData.rows = this.rows
+                //_tempData.json = this.json
+
+                _tempData.types = this.data.types
+                _tempData.names = this.data.names
+                _tempData.colors = this.data.colors
+                _tempData.classes = this.data.classes
+                this.mergeObjects(this.removeEmptyKeys(_dataOptions), _tempData)
+
+                return _tempData
             },
 
             axisOptions: function() {
@@ -336,7 +445,7 @@
                     _axisOptions.y.show = this.showYAxis
                 }
 
-                return _axisOptions
+                return this.removeEmptyKeys(_axisOptions)
             },
 
             gridOptions: function() {
@@ -364,7 +473,7 @@
                     _legendOptions.position = this.legendPosition
                 }
 
-                return _legendOptions
+                return this.removeEmptyKeys(_legendOptions)
             },
 
             tooltipOptions: function() {
@@ -391,7 +500,7 @@
                     }
                 }
 
-                return _tooltipOptions
+                return this.removeEmptyKeys(_tooltipOptions)
             },
 
             subchartOptions: function() {
@@ -405,7 +514,7 @@
                     _subchartOptions.size.height = this.subchartHeight
                 }
 
-                return _subchartOptions
+                return this.removeEmptyKeys(_subchartOptions)
             },
 
             zoomOptions: function() {
@@ -421,7 +530,7 @@
                     _zoomOptions.extent = this.zoomExtent
                 }
 
-                return _zoomOptions
+                return this.removeEmptyKeys(_zoomOptions)
             },
 
             pointOptions: function() {
@@ -446,7 +555,7 @@
                     _pointOptions.select.r = this.pointFocusSelectRadius
                 }
 
-                return _pointOptions
+                return this.removeEmptyKeys(_pointOptions)
             },
 
             chartCallbacks: function() {
@@ -493,12 +602,9 @@
             options: function() {
                 var _options = {}
                 _options.bindto = '#' + this.bindTo
-                _options.data  = this.data
-                _options.data.labels = this.labels
-                _options.data.type = this.type
+                _options.data = this.dataOptions
                 this.mergeObjects(_options, this.chartOptions)
                 //this.mergeObjects(_options, this.chartCallbacks)
-                this.mergeObjects(_options.data, this.dataOptions)
                 //this.mergeObjects(_options.data, this.dataCallbacks)
 
                 _options.axis = this.axisOptions
@@ -511,14 +617,6 @@
 
                 return _options
             },
-
-            /**
-             * Serialized chart data.
-             * @return {[type]} [description]
-             */
-            serializedChartData: function() {
-                return JSON.stringify(this.chartData)
-            }
         },
 
         filters: {
@@ -533,45 +631,15 @@
         },
 
         watch: {
-
-            'data.columns': function(newVal, oldVal) {
+            columns: function(newVal, oldVal) {
                 if (this.isReady) {
                     this.refresh()
                 }
             },
-
-            chartData: function(newVal, oldVal) {
-                this.data.columns = newVal
-            },
-
-            /**
-             * [chartData description]
-             * @param  {[type]} newVal [description]
-             * @param  {[type]} oldVal [description]
-             * @return {[type]}        [description]
-             */
-            columns: function(newVal, oldVal) {
-                var that  = this
-                var chart = $('#' + this.id).data('c3-chart')
-                that.isLoading = true
-                setTimeout(function () {
-                    chart.load({
-                        columns: newVal
-                    })
-                    that.isLoading = false
-                }, 1000)
-
-                // var chartLegendFocus = {}
-                // newVal.forEach(function (key) {
-                //     chartLegendFocus[key] = 0
-                // })
-                // this.chartLegendFocus = chartLegendFocus
-
-                // this.chartLegendItems = []
-                // for (var i = 0; i < newVal.length; i++) {
-                //     var legend = newVal[i]
-                //     this.chartLegendItems.push(legend[0])
-                // }
+            rows: function(newVal, oldVal) {
+                if (this.isReady) {
+                    this.refresh()
+                }
             },
         },
     }

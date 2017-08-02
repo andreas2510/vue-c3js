@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Chart options</h1>
+        <p>
+            <a href="../index.html">Back to all examples</a>
+        </p>
+        <div>
+            <h3>Size</h3>
+            <c3-chart id="size"
+                :rows="rows"
+                width="680"
+                height="420">
+                    <c3-line prop="data1" name="Data 1" custom-class="extra-class"></c3-line>
+                    <c3-spline prop="data2" name="Data 2"></c3-spline>
+            </c3-chart>
+        </div>
+        <div>
+            <h3>Padding</h3>
+            <c3-chart id="padding"
+                :rows="rows"
+                :padding-top="30"
+                :padding-right="30"
+                :padding-bottom="30"
+                :padding-left="30">
+                    <c3-line prop="data1" name="Data 1" custom-class="extra-class"></c3-line>
+                    <c3-spline prop="data2" name="Data 2"></c3-spline>
+            </c3-chart>
+        </div>
+        <div>
+            <h3>Color pattern</h3>
+            <c3-chart
+                id="example-1"
+                :rows="rows"
+                :color-pattern="['#1f77b4', '#aec7e8']">
+                    <c3-line prop="data1" name="Data 1"></c3-line>
+            </c3-chart>
+        </div>
+        <div>
+            <h3>Transition duration</h3>
+            <c3-chart
+                id="example-2"
+                :rows="rows"
+                transition-duration="1500">
+                    <c3-line prop="data1" name="Data 1"></c3-line>
+                    <c3-line prop="data2" name="Data 2"></c3-line>
+            </c3-chart>
+        </div>
+    </div>
+    <script src="./../build/build.js"></script>
+</body>
+</html>

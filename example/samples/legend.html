@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Legend</h1>
+        <p>
+            <a href="../index.html">Back to all examples</a>
+        </p>
+        <div>
+            <h3>Hide legend</h3>
+            <c3-chart id="legend-hide"
+                :rows="rows"
+                :show-legend="false">
+                    <c3-line prop="data1" name="Data 1" custom-class="extra-class"></c3-line>
+                    <c3-spline prop="data2" name="Data 2"></c3-spline>
+            </c3-chart>
+        </div>
+        <div>
+            <h3>Legend position</h3>
+            <c3-chart id="legend-posiiton"
+                :rows="rows"
+                legend-position="right">
+                    <c3-line prop="data1" name="Data 1" custom-class="extra-class"></c3-line>
+                    <c3-spline prop="data2" name="Data 2"></c3-spline>
+            </c3-chart>
+        </div>
+    </div>
+    <script src="./../build/build.js"></script>
+</body>
+</html>
