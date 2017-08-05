@@ -17,6 +17,8 @@ var app = new Vue({
     data: {
         message: "You loaded this page on " + new Date(),
         tooltipTitle: '',
+        tooltipName: '',
+        tooltipValue: '',
         columns: [
             ['data1', 30, 20, 50, 40, 60, 50],
             ['data2', 200, 130, 90, 240, 130, 220],
@@ -38,7 +40,14 @@ var app = new Vue({
             data1: [130, 120, 150, 140, 160, 150],
             data2: [200, 130, 90, 240, 130, 220],
             data3: [300, 200, 160, 400, 250, 250]
-        }
+        },
+
+        // Examples
+        rotatedExampleColumns: [
+            ['data1', 30, 200, 100, 400, 150, 250],
+            ['data2', 50, 20, 10, 40, 15, 25]
+        ],
+
     },
     mounted() {
         var that = this
@@ -67,8 +76,14 @@ var app = new Vue({
             console.log(d)
         },
         formatTooltipTitle: function(x) {
-            this.tooltipTitle = 'Your data is ' + x
-        }
+            this.tooltipTitle = 'Your tooltip title with data: ' + x
+        },
+        formatTooltipName: function(name, ratio, id, index) {
+            this.tooltipName = 'Custom ' + name
+        },
+        formatTooltipValue: function(value, ratio, id, index) {
+            this.tooltipValue = '€' + value
+        },
     },
     computed: {
 

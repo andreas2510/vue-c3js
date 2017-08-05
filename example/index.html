@@ -14,51 +14,25 @@
                 <li><a href="samples/grid.html">Grid</a></li>
                 <li><a href="samples/legend.html">Legend</a></li>
                 <li><a href="samples/tooltip.html">Tooltip</a></li>
+                <li><a href="samples/interaction.html">interaction</a></li>
+                <li><a href="samples/axis.html">axis</a></li>
+                <li><a href="samples/point.html">point</a></li>
             </ul>
         </div>
         <div>
             <c3-chart id="charty"
-                    :columns="columns"
+                    :rows="rows"
                     type="bar"
-
-                    :labels="false"
-
-                      :axis-rotated="false"
-                      :show-x-axis="true"
-                      :show-y-axis="true"
-                      :axis-x-tick-centered="false"
-
-                      :show-legend="true"
-                      legend-position="bottom"
-
-                      :show-tooltip="true"
-                      :tooltip-grouped="true"
-
-                      :show-subchart="false"
-                      :subchart-height="30"
-
-                      :zoom-enabled="false"
-                      :zoom-rescale="false"
-                      :zoom-extent="[1, 100]"
-
-                      :show-point="true"
-                      :point-radius="3"
-                      :point-focus-expand-enabled="true"
-                      :point-focus-expand-radius="4"
-                      :point-focus-select-radius="8"
-                      >
-                <c3-area prop="data1" name="Data 1" custom-class="classyy"></c3-area>
+                    :labels="false">
+                <c3-bar prop="data1" name="Data 1" custom-class="classyy"></c3-bar>
                 <c3-area-spline prop="data2" name="Data 2" :groups="'group1'"></c3-area-spline>
                 <c3-area-spline prop="data3" name="Data 3" :groups="'group1'"></c3-area-spline>
+            </c3-chart>
+
+            <!--
                 <c3-bar prop="data4" name="Data 4" :groups="'group2'"></c3-bar>
                 <c3-bar prop="data5" name="Data 5" :groups="'group2'"></c3-bar>
                 <c3-bar prop="data6" name="Data 6"></c3-bar>
-            </c3-chart>
-
-
-            <!--
-                      @tooltip-format-title="formatTooltipTitle"
-                      :tooltip-formatted-title="tooltipTitle"
                       @oninit="chartInit"
                       @onrendered="chartInit"
                       @onmouseover="chartInit"

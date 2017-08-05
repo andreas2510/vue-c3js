@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Axis</h1>
+        <p>
+            <a href="../index.html">Back to all examples</a>
+        </p>
+        <div>
+            <h3>categories</h3>
+            <c3-chart id="axis-categories"
+                :rows="rows"
+                :axis-x-categories="['cat1', 'cat2', 'cat3', 'cat4', 'cat5', 'cat6', 'cat7', 'cat8', 'cat9']">
+                    <c3-bar prop="data1" name="Data 1" custom-class="extra-class"></c3-bar>
+                    <c3-spline prop="data2" name="Data 2"></c3-spline>
+            </c3-chart>
+        </div>
+        <div>
+            <h3>rotated</h3>
+            <c3-chart id="axis-rotate"
+                :columns="rotatedExampleColumns"
+                :axis-rotated="true">
+                    <c3-bar prop="data1" name="Data 1" custom-class="extra-class"></c3-bar>
+                    <c3-line prop="data2" name="Data 2"></c3-line>
+            </c3-chart>
+        </div>
+        <div>
+            <h3>y-range</h3>
+            <c3-chart id="axis-y-range"
+                :rows="rows"
+                :axis-y-min="-400"
+                :axis-y-max="400">
+                    <c3-bar prop="data1" name="Data 1" custom-class="extra-class"></c3-bar>
+                    <c3-line prop="data2" name="Data 2"></c3-line>
+            </c3-chart>
+        </div>
+        <div>
+            <h3>labels</h3>
+            <c3-chart id="axis-labels"
+                :rows="rows"
+                :axis-x-label="'Label X'"
+                :axis-x-label-position="'inner-left'"
+                :axis-y-label="'Label Y'"
+                :axis-y-label-position="'outer-middle'">
+                    <c3-bar prop="data1" name="Data 1" custom-class="extra-class"></c3-bar>
+                    <c3-line prop="data2" name="Data 2"></c3-line>
+            </c3-chart>
+        </div>
+    </div>
+    <script src="./../build/build.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Tooltip</h1>
+        <p>
+            <a href="../index.html">Back to all examples</a>
+        </p>
+        <div>
+            <h3>Hide tooltip</h3>
+            <c3-chart id="tooltip-hide"
+                :rows="rows"
+                :tooltip-position-top="100"
+                :tooltip-position-left="100"
+                :show-tooltip="true">
+                    <c3-line prop="data1" name="Data 1" custom-class="extra-class"></c3-line>
+                    <c3-spline prop="data2" name="Data 2"></c3-spline>
+            </c3-chart>
+        </div>
+        <div>
+            <h3>Tooltip grouping</h3>
+            <c3-chart id="tooltip-grouping"
+                :rows="rows"
+                :tooltip-grouped="false">
+                    <c3-line prop="data1" name="Data 1" custom-class="extra-class"></c3-line>
+                    <c3-spline prop="data2" name="Data 2"></c3-spline>
+            </c3-chart>
+        </div>
+        <div>
+            <h3>Tooltip title</h3>
+            <c3-chart id="tooltip-title"
+                :rows="rows"
+                @tooltip-format-title="formatTooltipTitle"
+                :tooltip-formatted-title="tooltipTitle"
+                @tooltip-format-name="formatTooltipName"
+                :tooltip-formatted-name="tooltipName"
+                @tooltip-format-value="formatTooltipValue"
+                :tooltip-formatted-value="tooltipValue"
+                >
+                    <c3-line prop="data1" name="Data 1" custom-class="extra-class"></c3-line>
+                    <c3-spline prop="data2" name="Data 2"></c3-spline>
+            </c3-chart>
+        </div>
+    </div>
+    <script src="./../build/build.js"></script>
+</body>
+</html>

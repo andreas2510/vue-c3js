@@ -92,23 +92,53 @@
             },
 
             // Axis
+            axisXCategories: {
+                type: Array
+            },
             axisRotated: {
                 type: Boolean,
                 default: null
             },
-            showXAxis: {
+            axisXShow: {
                 type: Boolean,
                 default: null,
             },
-            showYAxis: {
+            axisXLabel: {
+                type: String
+            },
+            axisXLabelPosition: {
+                type: String
+            },
+            axisYShow: {
                 type: Boolean,
                 default: null,
             },
+            axisYLabel: {
+                type: String
+            },
+            axisYLabelPosition: {
+                type: String
+            },
+            axisYMin: {
+                type: Number
+            },
+            axisYMax: {
+                type: Number
+            },
+
+
+
             axisXTickCentered: {
                 type: Boolean,
                 default: null
             },
             axisXTickCount: {
+                type: Number
+            },
+            axisXTickValues: {
+                type: Array
+            },
+            axisXTickCulling: {
                 type: Number
             },
             axisXTickFit: {
@@ -159,6 +189,18 @@
             },
             tooltipFormattedTitle: {
                 type: String,
+            },
+            tooltipFormattedName: {
+                type: String,
+            },
+            tooltipFormattedValue: {
+                type: String,
+            },
+            tooltipPositionTop: {
+                type: Number,
+            },
+            tooltipPositionLeft: {
+                type: Number,
             },
 
             // Subchart
@@ -224,10 +266,10 @@
                     classes: {},
                     groups: {},
                     // axes: {},
-                    label: "",
+                    //label: "",
                     type: "",
                     types: {},
-                    // labels: false,
+                    labels: false,
                     // order: false,
                     // regions: {},
                     colors: {},
@@ -278,6 +320,7 @@
              * @return {[type]}      [description]
              */
             propExists: function(prop) {
+                return (undefined !== prop && null !== prop) ? true : false
                 return (undefined !== prop && null !== prop && '' !== prop) ? true : false
             },
 
@@ -298,7 +341,7 @@
                 Object.keys(obj).forEach(key => {
                     if (obj[key] && typeof obj[key] === 'object' && Object.keys(obj[key]).length > 0) {
                         that.removeEmptyKeys(obj[key])
-                    } else if (null === obj[key] || undefined === obj[key] || Object.keys(obj[key]).length === 0) {
+                    } else if (typeof obj[key] !== 'boolean' && typeof obj[key] !== 'number' && (null === obj[key] || undefined === obj[key] || Object.keys(obj[key]).length === 0)) {
                         delete obj[key]
                     }
                 });
@@ -329,15 +372,35 @@
 
             drawableColumns: function() {
                 var _types = Object.keys(this.data.types)
-                return this.columns.filter(function (col) {
-                    if (_types.includes(col[0])) {
-                        return col
-                    }
-                })
+                if (this.propExists(this.columns)) {
+                    return this.columns.filter(function (col) {
+                        if (_types.includes(col[0])) {
+                            return col
+                        }
+                    })
+                } else {
+                    return []
+                }
             },
 
             drawableRows: function() {
-                return this.rows
+                if (this.propExists(this.rows)) {
+                    var _types = Object.keys(this.data.types)
+                    var _rows = this.rows
+                    var _elements = _rows[0]
+                    var _indeces = []
+                    _elements.forEach(function (element, index) {
+                        if (_types.includes(element)) {
+                            _indeces.push(index)
+                        }
+                    })
+                    _rows = _rows.filter(function (row) {
+                        return row.filter((item, index) => _indeces.includes(index))
+                    })
+                    return _rows
+                } else {
+                    return []
+                }
             },
 
             drawableJson: function() {
@@ -400,6 +463,9 @@
                 //_tempData.columns = this.chartData
                 //_tempData.columns = this.columns
 
+                if (this.propExists(this.labels)) {
+                    _tempData.labels = this.labels
+                }
                 if (this.propExists(this.columns)) {
                     _tempData.columns = this.drawableColumns
                 }
@@ -430,21 +496,69 @@
                 var _axisOptions = {}
                 _axisOptions.x = {}
                 _axisOptions.x.tick = {}
+                _axisOptions.x.type = ''
+                _axisOptions.x.label = {}
                 _axisOptions.y = {}
+                _axisOptions.y.tick = {}
+                _axisOptions.y.label = {}
+                _axisOptions.y.padding = {}
 
+                if (this.propExists(this.axisXCategories)) {
+                    _axisOptions.x.type = 'category'
+                    _axisOptions.x.categories = this.axisXCategories
+                }
                 if (this.propExists(this.axisRotated)) {
                     _axisOptions.rotated = this.axisRotated
                 }
-                if (this.propExists(this.showXAxis)) {
-                    _axisOptions.x.show = this.showXAxis
+                if (this.propExists(this.axisXShow)) {
+                    _axisOptions.x.show = this.axisXShow
                 }
+                if (this.propExists(this.axisXLabel)) {
+                    _axisOptions.x.label.text = this.axisXLabel
+                }
+                if (this.propExists(this.axisXLabelPosition)) {
+                    _axisOptions.x.label.position = this.axisXLabelPosition
+                }
+                if (this.propExists(this.axisYShow)) {
+                    _axisOptions.y.show = this.axisYShow
+                }
+                if (this.propExists(this.axisYMin)) {
+                    _axisOptions.y.min = this.axisYMin
+                }
+                if (this.propExists(this.axisYMax)) {
+                    _axisOptions.y.max = this.axisYMax
+                }
+                if (this.propExists(this.axisYLabel)) {
+                    _axisOptions.y.label.text = this.axisYLabel
+                }
+                if (this.propExists(this.axisYLabelPosition)) {
+                    _axisOptions.y.label.position = this.axisYLabelPosition
+                }
+
+
+
+
+                // ???
                 if (this.propExists(this.axisXTickCentered)) {
                     _axisOptions.x.tick.centered = this.axisXTickCentered
                 }
+                if (this.propExists(this.axisXTickCount)) {
+                    _axisOptions.x.tick.count = this.axisXTickCount
+                }
+                if (this.propExists(this.axisXTickValues)) {
+                    _axisOptions.x.tick.values = this.axisXTickValues
+                }
+                if (this.propExists(this.axisXTickCulling)) {
+                    _axisOptions.x.tick.culling = {}
+                    _axisOptions.x.tick.culling.max = this.axisXTickCulling
+                }
+                // ???
+
                 if (this.propExists(this.showYAxis)) {
                     _axisOptions.y.show = this.showYAxis
                 }
 
+                //console.log(_axisOptions)
                 return this.removeEmptyKeys(_axisOptions)
             },
 
@@ -489,17 +603,48 @@
 
                 var that = this
 
+                if (this.propExists(this.tooltipPositionTop) || this.propExists(this.tooltipPositionLeft)) {
+                    _tooltipOptions.position = {}
+                    _tooltipOptions.position = function (data, width, height, element) {
+                        var obj = {}
+                        if (that.propExists(that.tooltipPositionTop)) {
+                            obj.top = that.tooltipPositionTop
+                        }
+                        if (that.propExists(that.tooltipPositionLeft)) {
+                            obj.left = that.tooltipPositionLeft
+                        }
+                        return obj
+                    }
+                }
+
                 _tooltipOptions.format = {
                     title: function (x) {
-                        // that.$emit('tooltip-format-title', x)
+                        that.$emit('tooltip-format-title', x)
                         if (that.propExists(that.tooltipFormattedTitle)) {
                             return that.tooltipFormattedTitle
                         } else {
                             return x
                         }
-                    }
+                    },
+                    name: function (name, ratio, id, index) {
+                        that.$emit('tooltip-format-name', name, ratio, id, index)
+                        if (that.propExists(that.tooltipFormattedName)) {
+                            return that.tooltipFormattedName
+                        } else {
+                            return name
+                        }
+                    },
+                    value: function (value, ratio, id, index) {
+                        that.$emit('tooltip-format-value', value, ratio, id, index)
+                        if (that.propExists(that.tooltipFormattedValue)) {
+                            return that.tooltipFormattedValue
+                        } else {
+                            return value
+                        }
+                    },
                 }
 
+                return _tooltipOptions
                 return this.removeEmptyKeys(_tooltipOptions)
             },
 
