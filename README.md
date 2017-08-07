@@ -15,3 +15,4 @@ c3js has many options, not all of them are supported yet.
 - transition duration
 
 ### Limitations
+- Load data from url [ref](http://c3js.org/reference.html#data-url)

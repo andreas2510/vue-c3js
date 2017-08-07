@@ -1,11 +1,11 @@
 
-import VueC3Element from './../mixins/VueC3Element'
+import VueC3CombinationElement from './../../mixins/VueC3CombinationElement'
 
 export default {
 
-    mixins: [VueC3Element],
+    mixins: [VueC3CombinationElement],
 
-    name: "c3-donut",
+    name: "c3-area",
 
     props: {
 
@@ -13,7 +13,7 @@ export default {
 
     data: function data() {
         return {
-            type: 'donut'
+            type: 'area'
         };
     },
 

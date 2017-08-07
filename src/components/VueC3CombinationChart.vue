@@ -10,86 +10,35 @@
 </template>
 
 <script>
-
-    import VueC3Line from './VueC3Line'
-    import VueC3Spline from './VueC3Spline'
-    import VueC3Bar from './VueC3Bar'
-    import VueC3Area from './VueC3Area'
-    import VueC3AreaSpline from './VueC3AreaSpline'
-    import VueC3Scatter from './VueC3Scatter'
-    import VueC3Step from './VueC3Step'
-    import VueC3Pie from './VueC3Pie'
-    import VueC3Donut from './VueC3Donut'
-    import VueC3Gauge from './VueC3Gauge'
+    import VueC3Base from './../mixins/VueC3Base'
+    import VueC3Line from './combination/VueC3Line'
+    import VueC3Spline from './combination/VueC3Spline'
+    import VueC3Bar from './combination/VueC3Bar'
+    import VueC3Area from './combination/VueC3Area'
+    import VueC3AreaSpline from './combination/VueC3AreaSpline'
+    import VueC3Scatter from './combination/VueC3Scatter'
+    import VueC3Step from './combination/VueC3Step'
+    import VueC3Pie from './combination/VueC3Pie'
+    import VueC3Donut from './combination/VueC3Donut'
+    import VueC3Gauge from './combination/VueC3Gauge'
 
     var c3 = require("c3")
 
     export default {
 
+        mixins: [VueC3Base],
+
         components: { VueC3Line, VueC3Spline, VueC3Bar, VueC3Area, VueC3AreaSpline, VueC3Scatter, VueC3Step, VueC3Pie, VueC3Donut, VueC3Gauge },
 
-        name: "c3-chart",
+        name: "c3-combination-chart",
 
         props: {
-            id: {
-                type: String,
-                required: true
-            },
+
             chartData: {
                 type: Array,
                 required: true
             },
 
-            // Chart options
-            width: {
-                type: Number
-            },
-            height: {
-                type: Number
-            },
-            paddingTop: {
-                type: Number
-            },
-            paddingRight: {
-                type: Number
-            },
-            paddingBottom: {
-                type: Number
-            },
-            paddingLeft: {
-                type: Number
-            },
-            colorPattern: {
-                type: Array
-            },
-            interactionEnabled: {
-                type: Boolean,
-                default: null
-            },
-            transitionDuration: {
-                type: Number
-            },
-
-            // Data
-            columns: {
-                type: Array,
-                default: null
-            },
-            rows: {
-                type: Array,
-                default: null
-            },
-            json: {
-                type: Object,
-                default: null
-            },
-            labels: {
-                type: Boolean,
-                default: null
-            },
-            type: {
-                type: String
-            },
 
             // Axis
             axisXCategories: {
@@ -159,34 +108,6 @@
                 type: Number
             },
 
-            // Grid
-            showGridX: {
-                type: Boolean,
-                default: null
-            },
-            showGridY: {
-                type: Boolean,
-                default: null
-            },
-
-            // Legend
-            showLegend: {
-                type: Boolean,
-                default: null
-            },
-            legendPosition: {
-                type: String
-            },
-
-            // Tooltip
-            showTooltip: {
-                type: Boolean,
-                default: null,
-            },
-            tooltipGrouped: {
-                type: Boolean,
-                default: null
-            },
             tooltipFormattedTitle: {
                 type: String,
             },
@@ -203,55 +124,16 @@
                 type: Number,
             },
 
-            // Subchart
-            showSubchart: {
-                type: Boolean,
-                default: null
-            },
-            subchartHeight: {
-                type: Number
-            },
 
-            // Zoom
-            zoomEnabled: {
-                type: Boolean,
-                default: null
-            },
-            zoomRescale: {
-                type: Boolean,
-                default: null
-            },
             zoomExtent: {
                 type: Array
             },
 
-            // Point
-            showPoint: {
-                type: Boolean,
-                default: null
-            },
-            pointRadius: {
-                type: Number
-            },
-            pointFocusExpandEnabled: {
-                type: Boolean,
-                default: null
-            },
-            pointFocusExpandRadius: {
-                type: Number
-            },
-            pointFocusSelectRadius: {
-                type: Number
-            },
+
         },
 
         data: function data() {
             return {
-                isReady: false,
-                isLoading: false,
-
-                // Options
-                bindTo: '',
 
                 data: {
                     // url: "",
@@ -279,7 +161,7 @@
         },
 
         created() {
-            this.bindTo = this.id
+            //this.bindTo = this.id
 
             this.$on('c3-chart-element-mounted', function(type, prop, options) {
 
@@ -307,66 +189,26 @@
         },
 
         mounted() {
-            var chart = c3.generate(this.options)
-            var el = document.getElementById(this.bindTo)
-            el.chartdata = chart
-            this.isReady = true
+            // var chart = c3.generate(this.options)
+            // this.setChartObject(chart)
+            // this.isReady = true
         },
 
         methods: {
-            /**
-             * [propExists description]
-             * @param  {[type]} prop [description]
-             * @return {[type]}      [description]
-             */
-            propExists: function(prop) {
-                return (undefined !== prop && null !== prop) ? true : false
-                return (undefined !== prop && null !== prop && '' !== prop) ? true : false
-            },
-
-            /**
-             * [mergeObjects description]
-             * @param  {[type]} obj [description]
-             * @param  {[type]} src [description]
-             * @return {[type]}     [description]
-             */
-            mergeObjects: function(obj, src) {
-                Object.keys(src).forEach(function(key) { obj[key] = src[key]; });
-                return obj;
-            },
-
-            removeEmptyKeys: function(objct) {
-                var that = this
-                var obj = objct
-                Object.keys(obj).forEach(key => {
-                    if (obj[key] && typeof obj[key] === 'object' && Object.keys(obj[key]).length > 0) {
-                        that.removeEmptyKeys(obj[key])
-                    } else if (typeof obj[key] !== 'boolean' && typeof obj[key] !== 'number' && (null === obj[key] || undefined === obj[key] || Object.keys(obj[key]).length === 0)) {
-                        delete obj[key]
-                    }
-                });
-                return obj;
-            },
 
             /**
              * [refresh description]
              * @return {[type]} [description]
              */
-            refresh: function() {
-                //this.chart.unload()
-                var _loadOptions = this.dataOptions //_loadOptions.columns = this.drawableColumns
-                this.chart.load(_loadOptions)
-                // this.chart.flush()
-            },
+            // refresh: function() {
+            //     //this.chart.unload()
+            //     var _loadOptions = this.dataOptions //_loadOptions.columns = this.drawableColumns
+            //     this.chart.load(_loadOptions)
+            //     // this.chart.flush()
+            // },
         },
 
         computed: {
-
-            // Chart Object
-
-            chart: function() {
-                return document.getElementById(this.bindTo).chartdata
-            },
 
             // Data
 
@@ -744,48 +586,37 @@
                 }
             },
 
-            options: function() {
-                var _options = {}
-                _options.bindto = '#' + this.bindTo
-                _options.data = this.dataOptions
-                this.mergeObjects(_options, this.chartOptions)
-                //this.mergeObjects(_options, this.chartCallbacks)
-                //this.mergeObjects(_options.data, this.dataCallbacks)
+            // options: function() {
+            //     var _options = {}
+            //     _options.bindto = '#' + this.bindTo
+            //     _options.data = this.dataOptions
+            //     this.mergeObjects(_options, this.chartOptions)
+            //     //this.mergeObjects(_options, this.chartCallbacks)
+            //     //this.mergeObjects(_options.data, this.dataCallbacks)
 
-                _options.axis = this.axisOptions
-                _options.grid = this.gridOptions
-                _options.legend = this.legendOptions
-                _options.tooltip = this.tooltipOptions
-                _options.point = this.pointOptions
-                _options.subchart = this.subchartOptions
-                _options.zoom = this.zoomOptions
+            //     // _options.axis = this.axisOptions
+            //     // _options.grid = this.gridOptions
+            //     // _options.legend = this.legendOptions
+            //     // _options.tooltip = this.tooltipOptions
+            //     // _options.point = this.pointOptions
+            //     // _options.subchart = this.subchartOptions
+            //     // _options.zoom = this.zoomOptions
 
-                return _options
-            },
-        },
-
-        filters: {
-            /**
-             * Round value to two decimal float.
-             * @param  {[type]} str [description]
-             * @return {[type]}     [description]
-             */
-            round: function (str) {
-                return parseFloat(str).toFixed(2)
-            },
+            //     return _options
+            // },
         },
 
         watch: {
-            columns: function(newVal, oldVal) {
-                if (this.isReady) {
-                    this.refresh()
-                }
-            },
-            rows: function(newVal, oldVal) {
-                if (this.isReady) {
-                    this.refresh()
-                }
-            },
+            // columns: function(newVal, oldVal) {
+            //     if (this.isReady) {
+            //         this.refresh()
+            //     }
+            // },
+            // rows: function(newVal, oldVal) {
+            //     if (this.isReady) {
+            //         this.refresh()
+            //     }
+            // },
         },
     }
 </script>

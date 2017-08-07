@@ -1,9 +1,9 @@
 
-import VueC3Element from './../mixins/VueC3Element'
+import VueC3CombinationElement from './../../mixins/VueC3CombinationElement'
 
 export default {
 
-    mixins: [VueC3Element],
+    mixins: [VueC3CombinationElement],
 
     name: "c3-line",
 

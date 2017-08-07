@@ -20,14 +20,52 @@
             </ul>
         </div>
         <div>
-            <c3-chart id="charty"
+            <!--c3-combination-chart id="charty"
+                  border
                     :rows="rows"
                     type="bar"
                     :labels="false">
                 <c3-bar prop="data1" name="Data 1" custom-class="classyy"></c3-bar>
                 <c3-area-spline prop="data2" name="Data 2" :groups="'group1'"></c3-area-spline>
                 <c3-area-spline prop="data3" name="Data 3" :groups="'group1'"></c3-area-spline>
-            </c3-chart>
+            </c3-combination-chart-->
+
+            <c3-line-chart
+                id="line-chart"
+                :rows="rows"
+                >
+                <!--
+                :color-pattern="['#1f77b4', '#aec7e8']"
+                disable-interaction
+                transition-duration="1500"
+
+                axis-rotated
+                hide-x-axis
+                hide-y-axis
+
+                show-grid-x
+                show-grid-y
+
+                hide-legend
+                legend-position="right"
+
+                hide-tooltip
+                ungroup-tooltip
+
+                show-subchart
+                :subchart-height="50"
+
+                zoom-enabled
+                zoom-rescale
+
+                hide-point
+                point-radius="5"
+                disable-point-focus-expand
+                point-focus-expand-radius="10"
+                point-focus-expand-radius="10"
+                -->
+
+              </c3-line-chart>
 
             <!--
                 <c3-bar prop="data4" name="Data 4" :groups="'group2'"></c3-bar>
