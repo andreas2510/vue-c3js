@@ -2,7 +2,7 @@
   "name": "vue-c3js",
   "version": "0.0.1",
   "description": "c3js wrapper for vuejs.",
-  "main": "./dist/vue-c3js.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "test",
     "dev:hot": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
