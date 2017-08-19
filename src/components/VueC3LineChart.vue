@@ -25,12 +25,14 @@
         name: "c3-line-chart",
 
         props: {
-
+            connectNull: {
+                type: Boolean
+            }
         },
 
         data: function data() {
             return {
-
+                chartType: 'line'
             };
         },
 

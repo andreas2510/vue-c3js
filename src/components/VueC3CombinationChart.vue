@@ -34,10 +34,10 @@
 
         props: {
 
-            chartData: {
-                type: Array,
-                required: true
-            },
+            // chartData: {
+            //     type: Array,
+            //     required: true
+            // },
 
 
             // Axis
@@ -251,340 +251,340 @@
 
             // Options
 
-            chartOptions: function() {
-                var _chartOptions = {}
-                _chartOptions.size = {}
-                _chartOptions.padding = {}
-                _chartOptions.color = {}
-                _chartOptions.interaction = {}
-                _chartOptions.transition = {}
+            // chartOptions: function() {
+            //     var _chartOptions = {}
+            //     _chartOptions.size = {}
+            //     _chartOptions.padding = {}
+            //     _chartOptions.color = {}
+            //     _chartOptions.interaction = {}
+            //     _chartOptions.transition = {}
 
-                if (this.propExists(this.width)) {
-                    _chartOptions.size.width = this.width
-                }
-                if (this.propExists(this.height)) {
-                    _chartOptions.size.height = this.height
-                }
-                if (this.propExists(this.paddingTop)) {
-                    _chartOptions.padding.top = this.paddingTop
-                }
-                if (this.propExists(this.paddingRight)) {
-                    _chartOptions.padding.right = this.paddingRight
-                }
-                if (this.propExists(this.paddingBottom)) {
-                    _chartOptions.padding.bottom = this.paddingBottom
-                }
-                if (this.propExists(this.paddingLeft)) {
-                    _chartOptions.padding.left = this.paddingLeft
-                }
-                if (this.propExists(this.colorPattern)) {
-                    _chartOptions.color.pattern = this.colorPattern
-                }
-                if (this.propExists(this.interactionEnabled)) {
-                    _chartOptions.interaction.enabled = this.interactionEnabled
-                }
-                if (this.propExists(this.transitionDuration)) {
-                    _chartOptions.transition.duration = this.transitionDuration
-                }
+            //     if (this.propExists(this.width)) {
+            //         _chartOptions.size.width = this.width
+            //     }
+            //     if (this.propExists(this.height)) {
+            //         _chartOptions.size.height = this.height
+            //     }
+            //     if (this.propExists(this.paddingTop)) {
+            //         _chartOptions.padding.top = this.paddingTop
+            //     }
+            //     if (this.propExists(this.paddingRight)) {
+            //         _chartOptions.padding.right = this.paddingRight
+            //     }
+            //     if (this.propExists(this.paddingBottom)) {
+            //         _chartOptions.padding.bottom = this.paddingBottom
+            //     }
+            //     if (this.propExists(this.paddingLeft)) {
+            //         _chartOptions.padding.left = this.paddingLeft
+            //     }
+            //     if (this.propExists(this.colorPattern)) {
+            //         _chartOptions.color.pattern = this.colorPattern
+            //     }
+            //     if (this.propExists(this.interactionEnabled)) {
+            //         _chartOptions.interaction.enabled = this.interactionEnabled
+            //     }
+            //     if (this.propExists(this.transitionDuration)) {
+            //         _chartOptions.transition.duration = this.transitionDuration
+            //     }
 
-                return this.removeEmptyKeys(_chartOptions)
-            },
+            //     return this.removeEmptyKeys(_chartOptions)
+            // },
 
-            dataOptions: function() {
-                var _dataOptions = {}
+            // dataOptions: function() {
+            //     var _dataOptions = {}
 
-                if (this.propExists(this.labels)) {
-                    _dataOptions.labels = this.labels
-                }
-                if (this.propExists(this.type)) {
-                    _dataOptions.type = this.type
-                }
+            //     if (this.propExists(this.labels)) {
+            //         _dataOptions.labels = this.labels
+            //     }
+            //     if (this.propExists(this.type)) {
+            //         _dataOptions.type = this.type
+            //     }
 
-                // dont mess with the actual data
-                var _tempData = {}
-                //_tempData.columns = this.chartData
-                //_tempData.columns = this.columns
+            //     // dont mess with the actual data
+            //     var _tempData = {}
+            //     //_tempData.columns = this.chartData
+            //     //_tempData.columns = this.columns
 
-                if (this.propExists(this.labels)) {
-                    _tempData.labels = this.labels
-                }
-                if (this.propExists(this.columns)) {
-                    _tempData.columns = this.drawableColumns
-                }
+            //     if (this.propExists(this.labels)) {
+            //         _tempData.labels = this.labels
+            //     }
+            //     if (this.propExists(this.columns)) {
+            //         _tempData.columns = this.drawableColumns
+            //     }
 
-                if (this.propExists(this.rows)) {
-                    _tempData.rows = this.drawableRows
-                }
+            //     if (this.propExists(this.rows)) {
+            //         _tempData.rows = this.drawableRows
+            //     }
 
-                if (this.propExists(this.json)) {
-                    _tempData.json = this.drawableJson
-                }
+            //     if (this.propExists(this.json)) {
+            //         _tempData.json = this.drawableJson
+            //     }
 
-                _tempData.groups = Object.values(this.data.groups)
+            //     _tempData.groups = Object.values(this.data.groups)
 
-                //_tempData.rows = this.rows
-                //_tempData.json = this.json
+            //     //_tempData.rows = this.rows
+            //     //_tempData.json = this.json
 
-                _tempData.types = this.data.types
-                _tempData.names = this.data.names
-                _tempData.colors = this.data.colors
-                _tempData.classes = this.data.classes
-                this.mergeObjects(this.removeEmptyKeys(_dataOptions), _tempData)
+            //     _tempData.types = this.data.types
+            //     _tempData.names = this.data.names
+            //     _tempData.colors = this.data.colors
+            //     _tempData.classes = this.data.classes
+            //     this.mergeObjects(this.removeEmptyKeys(_dataOptions), _tempData)
 
-                return _tempData
-            },
+            //     return _tempData
+            // },
 
-            axisOptions: function() {
-                var _axisOptions = {}
-                _axisOptions.x = {}
-                _axisOptions.x.tick = {}
-                _axisOptions.x.type = ''
-                _axisOptions.x.label = {}
-                _axisOptions.y = {}
-                _axisOptions.y.tick = {}
-                _axisOptions.y.label = {}
-                _axisOptions.y.padding = {}
+            // axisOptions: function() {
+            //     var _axisOptions = {}
+            //     _axisOptions.x = {}
+            //     _axisOptions.x.tick = {}
+            //     _axisOptions.x.type = ''
+            //     _axisOptions.x.label = {}
+            //     _axisOptions.y = {}
+            //     _axisOptions.y.tick = {}
+            //     _axisOptions.y.label = {}
+            //     _axisOptions.y.padding = {}
 
-                if (this.propExists(this.axisXCategories)) {
-                    _axisOptions.x.type = 'category'
-                    _axisOptions.x.categories = this.axisXCategories
-                }
-                if (this.propExists(this.axisRotated)) {
-                    _axisOptions.rotated = this.axisRotated
-                }
-                if (this.propExists(this.axisXShow)) {
-                    _axisOptions.x.show = this.axisXShow
-                }
-                if (this.propExists(this.axisXLabel)) {
-                    _axisOptions.x.label.text = this.axisXLabel
-                }
-                if (this.propExists(this.axisXLabelPosition)) {
-                    _axisOptions.x.label.position = this.axisXLabelPosition
-                }
-                if (this.propExists(this.axisYShow)) {
-                    _axisOptions.y.show = this.axisYShow
-                }
-                if (this.propExists(this.axisYMin)) {
-                    _axisOptions.y.min = this.axisYMin
-                }
-                if (this.propExists(this.axisYMax)) {
-                    _axisOptions.y.max = this.axisYMax
-                }
-                if (this.propExists(this.axisYLabel)) {
-                    _axisOptions.y.label.text = this.axisYLabel
-                }
-                if (this.propExists(this.axisYLabelPosition)) {
-                    _axisOptions.y.label.position = this.axisYLabelPosition
-                }
-
-
+            //     if (this.propExists(this.axisXCategories)) {
+            //         _axisOptions.x.type = 'category'
+            //         _axisOptions.x.categories = this.axisXCategories
+            //     }
+            //     if (this.propExists(this.axisRotated)) {
+            //         _axisOptions.rotated = this.axisRotated
+            //     }
+            //     if (this.propExists(this.axisXShow)) {
+            //         _axisOptions.x.show = this.axisXShow
+            //     }
+            //     if (this.propExists(this.axisXLabel)) {
+            //         _axisOptions.x.label.text = this.axisXLabel
+            //     }
+            //     if (this.propExists(this.axisXLabelPosition)) {
+            //         _axisOptions.x.label.position = this.axisXLabelPosition
+            //     }
+            //     if (this.propExists(this.axisYShow)) {
+            //         _axisOptions.y.show = this.axisYShow
+            //     }
+            //     if (this.propExists(this.axisYMin)) {
+            //         _axisOptions.y.min = this.axisYMin
+            //     }
+            //     if (this.propExists(this.axisYMax)) {
+            //         _axisOptions.y.max = this.axisYMax
+            //     }
+            //     if (this.propExists(this.axisYLabel)) {
+            //         _axisOptions.y.label.text = this.axisYLabel
+            //     }
+            //     if (this.propExists(this.axisYLabelPosition)) {
+            //         _axisOptions.y.label.position = this.axisYLabelPosition
+            //     }
 
 
-                // ???
-                if (this.propExists(this.axisXTickCentered)) {
-                    _axisOptions.x.tick.centered = this.axisXTickCentered
-                }
-                if (this.propExists(this.axisXTickCount)) {
-                    _axisOptions.x.tick.count = this.axisXTickCount
-                }
-                if (this.propExists(this.axisXTickValues)) {
-                    _axisOptions.x.tick.values = this.axisXTickValues
-                }
-                if (this.propExists(this.axisXTickCulling)) {
-                    _axisOptions.x.tick.culling = {}
-                    _axisOptions.x.tick.culling.max = this.axisXTickCulling
-                }
-                // ???
 
-                if (this.propExists(this.showYAxis)) {
-                    _axisOptions.y.show = this.showYAxis
-                }
 
-                //console.log(_axisOptions)
-                return this.removeEmptyKeys(_axisOptions)
-            },
+            //     // ???
+            //     if (this.propExists(this.axisXTickCentered)) {
+            //         _axisOptions.x.tick.centered = this.axisXTickCentered
+            //     }
+            //     if (this.propExists(this.axisXTickCount)) {
+            //         _axisOptions.x.tick.count = this.axisXTickCount
+            //     }
+            //     if (this.propExists(this.axisXTickValues)) {
+            //         _axisOptions.x.tick.values = this.axisXTickValues
+            //     }
+            //     if (this.propExists(this.axisXTickCulling)) {
+            //         _axisOptions.x.tick.culling = {}
+            //         _axisOptions.x.tick.culling.max = this.axisXTickCulling
+            //     }
+            //     // ???
 
-            gridOptions: function() {
-                var _gridOptions = {}
-                _gridOptions.x = {}
-                _gridOptions.y = {}
+            //     if (this.propExists(this.showYAxis)) {
+            //         _axisOptions.y.show = this.showYAxis
+            //     }
 
-                if (this.propExists(this.showGridX)) {
-                    _gridOptions.x.show = this.showGridX
-                }
-                if (this.propExists(this.showGridY)) {
-                    _gridOptions.y.show = this.showGridY
-                }
+            //     //console.log(_axisOptions)
+            //     return this.removeEmptyKeys(_axisOptions)
+            // },
 
-                return _gridOptions
-            },
+            // gridOptions: function() {
+            //     var _gridOptions = {}
+            //     _gridOptions.x = {}
+            //     _gridOptions.y = {}
 
-            legendOptions: function() {
-                var _legendOptions = {}
+            //     if (this.propExists(this.showGridX)) {
+            //         _gridOptions.x.show = this.showGridX
+            //     }
+            //     if (this.propExists(this.showGridY)) {
+            //         _gridOptions.y.show = this.showGridY
+            //     }
 
-                if (this.propExists(this.showLegend)) {
-                    _legendOptions.show = this.showLegend
-                }
-                if (this.propExists(this.legendPosition)) {
-                    _legendOptions.position = this.legendPosition
-                }
+            //     return _gridOptions
+            // },
 
-                return this.removeEmptyKeys(_legendOptions)
-            },
+            // legendOptions: function() {
+            //     var _legendOptions = {}
 
-            tooltipOptions: function() {
-                var _tooltipOptions = {}
-                _tooltipOptions.format = {}
+            //     if (this.propExists(this.showLegend)) {
+            //         _legendOptions.show = this.showLegend
+            //     }
+            //     if (this.propExists(this.legendPosition)) {
+            //         _legendOptions.position = this.legendPosition
+            //     }
 
-                if (this.propExists(this.showTooltip)) {
-                    _tooltipOptions.show = this.showTooltip
-                }
-                if (this.propExists(this.tooltipGrouped)) {
-                    _tooltipOptions.grouped = this.tooltipGrouped
-                }
+            //     return this.removeEmptyKeys(_legendOptions)
+            // },
 
-                var that = this
+            // tooltipOptions: function() {
+            //     var _tooltipOptions = {}
+            //     _tooltipOptions.format = {}
 
-                if (this.propExists(this.tooltipPositionTop) || this.propExists(this.tooltipPositionLeft)) {
-                    _tooltipOptions.position = {}
-                    _tooltipOptions.position = function (data, width, height, element) {
-                        var obj = {}
-                        if (that.propExists(that.tooltipPositionTop)) {
-                            obj.top = that.tooltipPositionTop
-                        }
-                        if (that.propExists(that.tooltipPositionLeft)) {
-                            obj.left = that.tooltipPositionLeft
-                        }
-                        return obj
-                    }
-                }
+            //     if (this.propExists(this.showTooltip)) {
+            //         _tooltipOptions.show = this.showTooltip
+            //     }
+            //     if (this.propExists(this.tooltipGrouped)) {
+            //         _tooltipOptions.grouped = this.tooltipGrouped
+            //     }
 
-                _tooltipOptions.format = {
-                    title: function (x) {
-                        that.$emit('tooltip-format-title', x)
-                        if (that.propExists(that.tooltipFormattedTitle)) {
-                            return that.tooltipFormattedTitle
-                        } else {
-                            return x
-                        }
-                    },
-                    name: function (name, ratio, id, index) {
-                        that.$emit('tooltip-format-name', name, ratio, id, index)
-                        if (that.propExists(that.tooltipFormattedName)) {
-                            return that.tooltipFormattedName
-                        } else {
-                            return name
-                        }
-                    },
-                    value: function (value, ratio, id, index) {
-                        that.$emit('tooltip-format-value', value, ratio, id, index)
-                        if (that.propExists(that.tooltipFormattedValue)) {
-                            return that.tooltipFormattedValue
-                        } else {
-                            return value
-                        }
-                    },
-                }
+            //     var that = this
 
-                return _tooltipOptions
-                return this.removeEmptyKeys(_tooltipOptions)
-            },
+            //     if (this.propExists(this.tooltipPositionTop) || this.propExists(this.tooltipPositionLeft)) {
+            //         _tooltipOptions.position = {}
+            //         _tooltipOptions.position = function (data, width, height, element) {
+            //             var obj = {}
+            //             if (that.propExists(that.tooltipPositionTop)) {
+            //                 obj.top = that.tooltipPositionTop
+            //             }
+            //             if (that.propExists(that.tooltipPositionLeft)) {
+            //                 obj.left = that.tooltipPositionLeft
+            //             }
+            //             return obj
+            //         }
+            //     }
 
-            subchartOptions: function() {
-                var _subchartOptions = {}
-                _subchartOptions.size = {}
+            //     _tooltipOptions.format = {
+            //         title: function (x) {
+            //             that.$emit('tooltip-format-title', x)
+            //             if (that.propExists(that.tooltipFormattedTitle)) {
+            //                 return that.tooltipFormattedTitle
+            //             } else {
+            //                 return x
+            //             }
+            //         },
+            //         name: function (name, ratio, id, index) {
+            //             that.$emit('tooltip-format-name', name, ratio, id, index)
+            //             if (that.propExists(that.tooltipFormattedName)) {
+            //                 return that.tooltipFormattedName
+            //             } else {
+            //                 return name
+            //             }
+            //         },
+            //         value: function (value, ratio, id, index) {
+            //             that.$emit('tooltip-format-value', value, ratio, id, index)
+            //             if (that.propExists(that.tooltipFormattedValue)) {
+            //                 return that.tooltipFormattedValue
+            //             } else {
+            //                 return value
+            //             }
+            //         },
+            //     }
 
-                if (this.propExists(this.showSubchart)) {
-                    _subchartOptions.show = this.showSubchart
-                }
-                if (this.propExists(this.subchartHeight)) {
-                    _subchartOptions.size.height = this.subchartHeight
-                }
+            //     return _tooltipOptions
+            //     return this.removeEmptyKeys(_tooltipOptions)
+            // },
 
-                return this.removeEmptyKeys(_subchartOptions)
-            },
+            // subchartOptions: function() {
+            //     var _subchartOptions = {}
+            //     _subchartOptions.size = {}
 
-            zoomOptions: function() {
-                var _zoomOptions = {}
+            //     if (this.propExists(this.showSubchart)) {
+            //         _subchartOptions.show = this.showSubchart
+            //     }
+            //     if (this.propExists(this.subchartHeight)) {
+            //         _subchartOptions.size.height = this.subchartHeight
+            //     }
 
-                if (this.propExists(this.zoomEnabled)) {
-                    _zoomOptions.enabled = this.zoomEnabled
-                }
-                if (this.propExists(this.zoomRescale)) {
-                    _zoomOptions.rescale = this.zoomRescale
-                }
-                if (this.propExists(this.zoomExtent)) {
-                    _zoomOptions.extent = this.zoomExtent
-                }
+            //     return this.removeEmptyKeys(_subchartOptions)
+            // },
 
-                return this.removeEmptyKeys(_zoomOptions)
-            },
+            // zoomOptions: function() {
+            //     var _zoomOptions = {}
 
-            pointOptions: function() {
-                var _pointOptions = {}
-                _pointOptions.focus = {}
-                _pointOptions.focus.expand = {}
-                _pointOptions.select = {}
+            //     if (this.propExists(this.zoomEnabled)) {
+            //         _zoomOptions.enabled = this.zoomEnabled
+            //     }
+            //     if (this.propExists(this.zoomRescale)) {
+            //         _zoomOptions.rescale = this.zoomRescale
+            //     }
+            //     if (this.propExists(this.zoomExtent)) {
+            //         _zoomOptions.extent = this.zoomExtent
+            //     }
 
-                if (this.propExists(this.showPoint)) {
-                    _pointOptions.show = this.showPoint
-                }
-                if (this.propExists(this.pointRadius)) {
-                    _pointOptions.r = this.pointRadius
-                }
-                if (this.propExists(this.pointFocusExpandEnabled)) {
-                    _pointOptions.focus.expand.enabled = this.pointFocusExpandEnabled
-                }
-                if (this.propExists(this.pointFocusExpandRadius)) {
-                    _pointOptions.focus.expand.r = this.pointFocusExpandRadius
-                }
-                if (this.propExists(this.pointFocusSelectRadius)) {
-                    _pointOptions.select.r = this.pointFocusSelectRadius
-                }
+            //     return this.removeEmptyKeys(_zoomOptions)
+            // },
 
-                return this.removeEmptyKeys(_pointOptions)
-            },
+            // pointOptions: function() {
+            //     var _pointOptions = {}
+            //     _pointOptions.focus = {}
+            //     _pointOptions.focus.expand = {}
+            //     _pointOptions.select = {}
 
-            chartCallbacks: function() {
-                var that = this
-                return {
-                    oninit: function () {
-                        that.$emit('oninit')
-                    },
-                    onrendered: function () {
-                        that.$emit('onrendered')
-                    },
-                    onmouseover: function () {
-                        that.$emit('onmouseover')
-                    },
-                    onmouseout: function () {
-                        that.$emit('onmouseout')
-                    },
-                    onresize: function () {
-                        that.$emit('onresize')
-                    },
-                    onresized: function () {
-                        that.$emit('onresized')
-                    },
-                }
-            },
+            //     if (this.propExists(this.showPoint)) {
+            //         _pointOptions.show = this.showPoint
+            //     }
+            //     if (this.propExists(this.pointRadius)) {
+            //         _pointOptions.r = this.pointRadius
+            //     }
+            //     if (this.propExists(this.pointFocusExpandEnabled)) {
+            //         _pointOptions.focus.expand.enabled = this.pointFocusExpandEnabled
+            //     }
+            //     if (this.propExists(this.pointFocusExpandRadius)) {
+            //         _pointOptions.focus.expand.r = this.pointFocusExpandRadius
+            //     }
+            //     if (this.propExists(this.pointFocusSelectRadius)) {
+            //         _pointOptions.select.r = this.pointFocusSelectRadius
+            //     }
 
-            dataCallbacks: function() {
-                var that = this
-                return {
-                    onclick: function (d, element) {
-                        that.$emit('data-onclick', d)
-                        // console.log(d)
-                        // console.log(element)
-                    },
-                    onmouseover: function (d) {
-                        that.$emit('data-onmouseover', d)
-                    },
-                    onmouseout: function (d) {
-                        that.$emit('data-onmouseout', d)
-                    },
-                }
-            },
+            //     return this.removeEmptyKeys(_pointOptions)
+            // },
+
+            // chartCallbacks: function() {
+            //     var that = this
+            //     return {
+            //         oninit: function () {
+            //             that.$emit('oninit')
+            //         },
+            //         onrendered: function () {
+            //             that.$emit('onrendered')
+            //         },
+            //         onmouseover: function () {
+            //             that.$emit('onmouseover')
+            //         },
+            //         onmouseout: function () {
+            //             that.$emit('onmouseout')
+            //         },
+            //         onresize: function () {
+            //             that.$emit('onresize')
+            //         },
+            //         onresized: function () {
+            //             that.$emit('onresized')
+            //         },
+            //     }
+            // },
+
+            // dataCallbacks: function() {
+            //     var that = this
+            //     return {
+            //         onclick: function (d, element) {
+            //             that.$emit('data-onclick', d)
+            //             // console.log(d)
+            //             // console.log(element)
+            //         },
+            //         onmouseover: function (d) {
+            //             that.$emit('data-onmouseover', d)
+            //         },
+            //         onmouseout: function (d) {
+            //             that.$emit('data-onmouseout', d)
+            //         },
+            //     }
+            // },
 
             // options: function() {
             //     var _options = {}

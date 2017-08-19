@@ -57,8 +57,50 @@ export default {
             type: Object,
             default: null
         },
+        dataX: {
+            type: String
+        },
+        dataXFormat: {
+            type: String
+        },
         showLabels: {
             type: Boolean
+        },
+        names: {
+            type: Object
+        },
+        classes: {
+            type: Object
+        },
+        axes: {
+            type: Object
+        },
+        labels: {
+            type: Boolean
+        },
+        order: {
+            type: String
+        },
+        groups: {
+            type: Array
+        },
+        colors: {
+            type: Object
+        },
+        enableSelection: {
+            type: Boolean
+        },
+        selectionGrouped: {
+            type: Boolean
+        },
+        singleSelection: {
+            type: Boolean
+        },
+        selectionDraggable: {
+            type: Boolean
+        },
+        emptyLabelText: {
+            type: String
         },
 
         // Axis
@@ -67,6 +109,12 @@ export default {
         },
         hideXAxis: {
             type: Boolean
+        },
+        axisXType: {
+            type: String // timeseries, category, indexed
+        },
+        axisXCategories: {
+            type: Array
         },
         hideYAxis: {
             type: Boolean
@@ -134,9 +182,8 @@ export default {
         return {
             isReady: false,
             isLoading: false,
-
-            // Options
             bindTo: '',
+            chartType: 'line'
         };
     },
 
@@ -196,7 +243,7 @@ export default {
         },
         refresh: function() {
             //this.chart.unload()
-            var _loadOptions = this.defaultOptions.data //_loadOptions.columns = this.drawableColumns
+            var _loadOptions = this.options.data // _loadOptions.columns = this.drawableColumns
             this.chart.load(_loadOptions)
             // this.chart.flush()
         },
@@ -213,13 +260,13 @@ export default {
         // Data
 
         drawableColumns: function() {
-            return this.columns
+            return this.propExists(this.columns) ? this.columns : []
         },
         drawableRows: function() {
-            return this.rows
+            return this.propExists(this.rows) ? this.rows : []
         },
         drawableJson: function() {
-            return this.json
+            return this.propExists(this.json) ? this.json : []
         },
 
         // Options
@@ -266,13 +313,17 @@ export default {
             // Data Options
             // ----------------------------------------------------------------
 
-            var _dataOptions = {}
+            // var _dataOptions = {}
 
-            if (this.labels) {
-                _dataOptions.labels = this.labels
-            }
+            // if (this.labels) {
+            //     _dataOptions.labels = this.labels
+            // }
 
             var _drawableData = {}
+
+            if (this.propExists(this.chartType)) {
+                _drawableData.type = this.chartType
+            }
 
             if (this.propExists(this.columns)) {
                 _drawableData.columns = this.drawableColumns
@@ -280,9 +331,56 @@ export default {
             if (this.propExists(this.rows)) {
                 _drawableData.rows = this.drawableRows
             }
+            if (this.propExists(this.dataX)) {
+                _drawableData.x = this.dataX
+            }
+            if (this.propExists(this.dataXFormat)) {
+                _drawableData.xFormat = this.dataXFormat
+            }
 
-            _drawableData.selection = {}
-            _drawableData.selection.enabled = true
+            if (this.propExists(this.names)) {
+                _drawableData.names = this.names
+            }
+            if (this.propExists(this.classes)) {
+                _drawableData.classes = this.classes
+            }
+            if (this.propExists(this.groups)) {
+                _drawableData.groups = this.groups
+            }
+            if (this.propExists(this.axes)) {
+                _drawableData.axes = this.axes
+            }
+            if (this.labels) {
+                _drawableData.labels = this.labels
+            }
+            if (this.propExists(this.order)) {
+                _drawableData.order = this.order
+            }
+            if (this.propExists(this.colors)) {
+                _drawableData.colors = this.colors
+            }
+
+            if (this.enableSelection || this.selectionGrouped || this.singleSelection || this.selectionDraggable) {
+                _drawableData.selection = {}
+                if (this.enableSelection) {
+                    _drawableData.selection.enabled = this.enableSelection
+                }
+                if (this.selectionGrouped) {
+                    _drawableData.selection.grouped = this.selectionGrouped
+                }
+                if (this.singleSelection) {
+                    _drawableData.selection.multiple = !this.singleSelection
+                }
+                if (this.selectionDraggable) {
+                    _drawableData.selection.draggable = this.selectionDraggable
+                }
+            }
+
+            if (this.propExists(this.emptyLabelText)) {
+                _drawableData.empty = {}
+                _drawableData.empty.label = {}
+                _drawableData.empty.label.text = this.emptyLabelText
+            }
 
             _drawableData.onclick = function (d, element) { self.$emit('data-onclick', d) }
             _drawableData.onmouseover = function (d, element) { self.$emit('data-onmouseover', d) }
@@ -297,9 +395,20 @@ export default {
             if (this.axisRotated) {
                 _axisOptions.rotated = this.axisRotated
             }
-            if (this.hideXAxis) {
+            if (this.hideXAxis || this.propExists(this.axisXType) || this.xAxisLocaltime || this.propExists(this.axisXCategories)) {
                 _axisOptions.x = {}
-                _axisOptions.x.show = !this.hideXAxis
+                if (this.hideXAxis) {
+                    _axisOptions.x.show = !this.hideXAxis
+                }
+                if (this.propExists(this.axisXType)) {
+                    _axisOptions.x.type = this.axisXType
+                }
+                if (this.xAxisLocaltime) {
+                    _axisOptions.x.localtime = this.xAxisLocaltime
+                }
+                if (this.propExists(this.axisXCategories)) {
+                    _axisOptions.x.categories = this.axisXCategories
+                }
             }
             if (this.hideYAxis) {
                 _axisOptions.y = {}
@@ -380,6 +489,10 @@ export default {
                 _zoomOptions.rescale = this.zoomRescale
             }
 
+            _zoomOptions.onzoom = function (domain) { self.$emit('onzoom', domain) }
+            _zoomOptions.onzoomstart = function (domain) { self.$emit('onzoomstart', domain) }
+            _zoomOptions.onzoomend = function (domain) { self.$emit('onzoomend', domain) }
+
             // ----------------------------------------------------------------
             // Point Options
             // ----------------------------------------------------------------
@@ -407,6 +520,74 @@ export default {
                 _pointOptions.select.r = this.pointFocusSelectRadius
             }
 
+            // ----------------------------------------------------------------
+            // Line Options
+            // ----------------------------------------------------------------
+
+            var _lineOptions = {}
+
+            if (this.propExists(this.connectNull) && this.connectNull) {
+                _lineOptions.connectNull = this.connectNull
+            }
+
+            // ----------------------------------------------------------------
+            // Bar Options
+            // ----------------------------------------------------------------
+
+            var _barOptions = {}
+
+            if (this.propExists(this.barWidth) && this.barWidth) {
+                _barOptions.width = parseInt(this.barWidth)
+            }
+            if (this.propExists(this.barWidthRatio) && this.barWidthRatio) {
+                _barOptions.width = {}
+                _barOptions.width.ratio = this.barWidthRatio
+            }
+            if (this.notZeroBased) {
+                _barOptions.zerobased = !this.notZeroBased
+            }
+
+            var _gaugeOptions = {}
+
+            if (this.chartType == 'gauge' && this.hideLabel) {
+                _gaugeOptions.label = {}
+                _gaugeOptions.label.show = !this.hideLabel
+            }
+
+            if (this.chartType == 'gauge' && this.disableExpand) {
+                _gaugeOptions.expand = !this.disableExpand
+            }
+
+            var _pieOptions = {}
+
+            if (this.chartType == 'pie' && this.hideLabel) {
+                _pieOptions.label = {}
+                _pieOptions.label.show = !this.hideLabel
+            }
+
+            if (this.chartType == 'pie' && this.disableExpand) {
+                _pieOptions.expand = !this.disableExpand
+            }
+
+            var _donutOptions = {}
+
+            if (this.chartType == 'donut' && this.hideLabel) {
+                _donutOptions.label = {}
+                _donutOptions.label.show = !this.hideLabel
+            }
+
+            if (this.chartType == 'donut' && this.disableExpand) {
+                _donutOptions.expand = !this.disableExpand
+            }
+
+            if (this.chartType == 'pie' || this.chartType == 'donut' || this.chartType == 'gauge') {
+
+            }
+
+            // ----------------------------------------------------------------
+            // Consolidate Options
+            // ----------------------------------------------------------------
+
             _options.data = _drawableData
             _options.axis = _axisOptions
             _options.grid = _gridOptions
@@ -415,6 +596,26 @@ export default {
             _options.subchart = _subchartOptions
             _options.zoom = _zoomOptions
             _options.point = _pointOptions
+
+            if (this.chartType == 'line' && Object.keys(_lineOptions).length > 0 && _lineOptions.constructor === Object) {
+                _options.line = _lineOptions
+            }
+
+            if (this.chartType == 'bar' && Object.keys(_barOptions).length > 0 && _barOptions.constructor === Object) {
+                _options.bar = _barOptions
+            }
+
+            if (Object.keys(_gaugeOptions).length > 0 && _gaugeOptions.constructor === Object) {
+                _options.gauge = _gaugeOptions
+            }
+
+            if (Object.keys(_pieOptions).length > 0 && _pieOptions.constructor === Object) {
+                _options.pie = _pieOptions
+            }
+
+            if (Object.keys(_donutOptions).length > 0 && _donutOptions.constructor === Object) {
+                _options.donut = _donutOptions
+            }
 
             return _options
         },

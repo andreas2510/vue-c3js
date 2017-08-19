@@ -2,6 +2,15 @@
 
 // Types
 import VueC3LineChart from './components/VueC3LineChart.vue'
+import VueC3SplineChart from './components/VueC3SplineChart.vue'
+import VueC3StepChart from './components/VueC3StepChart.vue'
+import VueC3AreaChart from './components/VueC3AreaChart.vue'
+import VueC3AreaSplineChart from './components/VueC3AreaSplineChart.vue'
+import VueC3BarChart from './components/VueC3BarChart.vue'
+import VueC3ScatterChart from './components/VueC3ScatterChart.vue'
+import VueC3PieChart from './components/VueC3PieChart.vue'
+import VueC3DonutChart from './components/VueC3DonutChart.vue'
+import VueC3GaugeChart from './components/VueC3GaugeChart.vue'
 
 // Combination
 import VueC3CombinationChart from './components/VueC3CombinationChart.vue'
@@ -31,6 +40,15 @@ const components = [
     VueC3Donut,
     VueC3Gauge,
     VueC3LineChart,
+    VueC3SplineChart,
+    VueC3StepChart,
+    VueC3AreaChart,
+    VueC3AreaSplineChart,
+    VueC3BarChart,
+    VueC3ScatterChart,
+    VueC3PieChart,
+    VueC3DonutChart,
+    VueC3GaugeChart,
 ]
 
 const install = function(Vue, opts = {}) {
@@ -60,23 +78,32 @@ const VueC3Charts = {
     VueC3Donut,
     VueC3Gauge,
     VueC3LineChart,
+    VueC3SplineChart,
+    VueC3StepChart,
+    VueC3AreaChart,
+    VueC3AreaSplineChart,
+    VueC3BarChart,
+    VueC3ScatterChart,
+    VueC3PieChart,
+    VueC3DonutChart,
+    VueC3GaugeChart,
 }
 
 export default VueC3Charts
 
-module.exports = {
-    version: npmCfg.version,
-    install,
-    VueC3Charts,
-    VueC3CombinationChart,
-    VueC3Line,
-    VueC3Spline,
-    VueC3Bar,
-    VueC3Area,
-    VueC3AreaSpline,
-    VueC3Scatter,
-    VueC3Step,
-    VueC3Pie,
-    VueC3Donut,
-    VueC3Gauge,
-}
+// module.exports = {
+//     version: npmCfg.version,
+//     install,
+//     VueC3Charts,
+//     VueC3CombinationChart,
+//     VueC3Line,
+//     VueC3Spline,
+//     VueC3Bar,
+//     VueC3Area,
+//     VueC3AreaSpline,
+//     VueC3Scatter,
+//     VueC3Step,
+//     VueC3Pie,
+//     VueC3Donut,
+//     VueC3Gauge,
+// }

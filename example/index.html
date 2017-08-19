@@ -30,7 +30,7 @@
                 <c3-area-spline prop="data3" name="Data 3" :groups="'group1'"></c3-area-spline>
             </c3-combination-chart-->
 
-            <c3-line-chart
+            <c3-bar-chart
                 id="line-chart"
                 :rows="rows"
                 >
@@ -39,9 +39,38 @@
                 disable-interaction
                 transition-duration="1500"
 
+                labels
+                :order="'asc'"
+                :groups="[['data1', 'data2']]"
+                :classes="{
+                  data1: 'additional-data1-class',
+                  data2: 'additional-data2-class'
+                }"
+                :axes="{
+                  data1: 'y',
+                  data2: 'y2'
+                }"
+                :names="{
+                  data1: 'Data Name 1',
+                  data2: 'Data Name 2'
+                }"
+                :colors="{
+                  data1: '#ff0000',
+                }"
+                :data-x="rows[0][1]"
+                :data-x-format="'%Y-%m-%d %H:%M:%S'"
+
+                enable-selection
+                selection-grouped
+                single-selection
+                selection-draggable
+                empty-label-text="No data"
+
                 axis-rotated
                 hide-x-axis
                 hide-y-axis
+                :axis-x-type="'category'"
+                :axis-x-categories="['cat1', 'cat2', 'cat3', 'cat4', 'cat5', 'cat6', 'cat7', 'cat8', 'cat9']"
 
                 show-grid-x
                 show-grid-y
@@ -63,9 +92,32 @@
                 disable-point-focus-expand
                 point-focus-expand-radius="10"
                 point-focus-expand-radius="10"
+
+                connect-null
+
+                bar-width="40"
+                bar-width-ratio="0.1"
+                not-zero-based
                 -->
 
-              </c3-line-chart>
+            </c3-bar-chart>
+
+            <c3-gauge-chart id="gauge"
+              :columns="gaugeColumns"
+              hide-label>
+            </c3-gauge-chart>
+
+            <c3-pie-chart id="pie"
+              :columns="pieColumns"
+              hide-label
+              disable-expand>
+            </c3-pie-chart>
+
+            <c3-donut-chart id="donut"
+              :columns="pieColumns"
+              hide-label
+              disable-expand>
+            </c3-donut-chart>
 
             <!--
                 <c3-bar prop="data4" name="Data 4" :groups="'group2'"></c3-bar>
