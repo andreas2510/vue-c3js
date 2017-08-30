@@ -7,34 +7,10 @@ export default {
 
     name: "c3-donut",
 
-    props: {
-
-    },
-
     data: function data() {
         return {
             type: 'donut'
-        };
-    },
-
-    mounted() {
-
-    },
-
-    methods: {
-
-    },
-
-    computed: {
-
-    },
-
-    filters: {
-
-    },
-
-    watch: {
-
-    },
+        }
+    }
 }
 

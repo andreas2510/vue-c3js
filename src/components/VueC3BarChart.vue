@@ -1,6 +1,4 @@
-<style>
-    @import url("./../../node_modules/c3/c3.min.css");
-</style>
+<style></style>
 
 <template>
     <div>
@@ -11,8 +9,6 @@
 
 <script>
     import VueC3Base from './../mixins/VueC3Base'
-
-    var c3 = require("c3")
 
     export default {
 
@@ -35,22 +31,7 @@
         data: function data() {
             return {
                 chartType: 'bar'
-            };
-        },
-
-        created() {
-        },
-
-        mounted() {
-        },
-
-        methods: {
-        },
-
-        computed: {
-        },
-
-        watch: {
-        },
+            }
+        }
     }
 </script>

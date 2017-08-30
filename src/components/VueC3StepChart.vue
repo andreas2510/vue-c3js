@@ -1,6 +1,4 @@
-<style>
-    @import url("./../../node_modules/c3/c3.min.css");
-</style>
+<style></style>
 
 <template>
     <div>
@@ -12,37 +10,18 @@
 <script>
     import VueC3Base from './../mixins/VueC3Base'
 
-    var c3 = require("c3")
-
     export default {
 
         mixins: [VueC3Base],
 
         name: "c3-step-chart",
 
-        props: {
-
-        },
+        props: {},
 
         data: function data() {
             return {
                 chartType: 'step'
-            };
-        },
-
-        created() {
-        },
-
-        mounted() {
-        },
-
-        methods: {
-        },
-
-        computed: {
-        },
-
-        watch: {
-        },
+            }
+        }
     }
 </script>

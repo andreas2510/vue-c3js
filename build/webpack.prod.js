@@ -1,3 +1,5 @@
+// https://webpack.js.org/guides/author-libraries/#author-a-library
+
 var path = require('path')
 var webpack = require('webpack')
 
@@ -7,9 +9,13 @@ module.exports = {
     path: path.resolve(__dirname, './../dist'),
     publicPath: '/dist/',
     filename: 'vue-c3js.js',
-    library: 'vue-c3js',
+    library: 'VueC3Js',
     libraryTarget: 'umd',
     umdNamedDefine: true
+  },
+  externals: {
+    'vue': 'vue',
+    'c3': 'c3'
   },
   module: {
     rules: [
@@ -52,7 +58,8 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  //module.exports.devtool = '#source-map'
+  delete module.exports.devtool
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({

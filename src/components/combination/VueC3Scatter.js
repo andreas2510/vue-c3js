@@ -7,34 +7,10 @@ export default {
 
     name: "c3-scatter",
 
-    props: {
-
-    },
-
     data: function data() {
         return {
             type: 'scatter'
-        };
-    },
-
-    mounted() {
-
-    },
-
-    methods: {
-
-    },
-
-    computed: {
-
-    },
-
-    filters: {
-
-    },
-
-    watch: {
-
-    },
+        }
+    }
 }
 

@@ -7,34 +7,14 @@ export default {
 
     name: "c3-line",
 
-    props: {
-        connectNull: {},
-        stepType: {},
-    },
-
     data: function data() {
         return {
             type: 'line'
-        };
+        }
     },
 
-    mounted() {
-
-    },
-
-    methods: {
-
-    },
-
-    computed: {
-
-    },
-
-    filters: {
-
-    },
-
-    watch: {
-
-    },
+    props: {
+        connectNull: {},
+        stepType: {},
+    }
 }

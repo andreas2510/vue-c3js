@@ -1,6 +1,4 @@
-<style>
-    @import url("./../../node_modules/c3/c3.min.css");
-</style>
+<style></style>
 
 <template>
     <div>
@@ -22,8 +20,6 @@
     import VueC3Donut from './combination/VueC3Donut'
     import VueC3Gauge from './combination/VueC3Gauge'
 
-    var c3 = require("c3")
-
     export default {
 
         mixins: [VueC3Base],
@@ -38,7 +34,6 @@
             //     type: Array,
             //     required: true
             // },
-
 
             // Axis
             axisXCategories: {

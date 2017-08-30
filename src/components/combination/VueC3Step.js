@@ -7,34 +7,10 @@ export default {
 
     name: "c3-step",
 
-    props: {
-
-    },
-
     data: function data() {
         return {
             type: 'step'
-        };
-    },
-
-    mounted() {
-
-    },
-
-    methods: {
-
-    },
-
-    computed: {
-
-    },
-
-    filters: {
-
-    },
-
-    watch: {
-
-    },
+        }
+    }
 }
 

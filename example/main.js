@@ -8,8 +8,8 @@ Vue.config.devtools = true
 // Vue.component('c3-spline', require('./components/VueC3Spline'))
 
 // import VueC3Chart from 'vue-c3js'
-import VueC3Charts from './../src/index.js'
-// import VueC3Charts from './../dist/vue-c3js.js'
+import VueC3Charts from './../dist/vue-c3js.js'
+// import VueC3Charts from './../src/index.js'
 Vue.use(VueC3Charts)
 
 var app = new Vue({
@@ -19,6 +19,7 @@ var app = new Vue({
         tooltipTitle: '',
         tooltipName: '',
         tooltipValue: '',
+        axisXTickValue: '',
         columns: [
             ['data1', 30, 20, 50, 40, 60, 50],
             ['data2', 200, 130, 90, 240, 130, 220],
@@ -96,6 +97,10 @@ var app = new Vue({
         },
         formatTooltipValue: function(value, ratio, id, index) {
             this.tooltipValue = '€' + value
+        },
+        axisXTickFormatted: function(x) {
+            console.log(x)
+            this.axisXTickValue = '€' + x
         },
     },
     computed: {

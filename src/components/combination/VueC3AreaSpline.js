@@ -7,34 +7,10 @@ export default {
 
     name: "c3-area-spline",
 
-    props: {
-
-    },
-
     data: function data() {
         return {
             type: 'area-spline'
-        };
-    },
-
-    mounted() {
-
-    },
-
-    methods: {
-
-    },
-
-    computed: {
-
-    },
-
-    filters: {
-
-    },
-
-    watch: {
-
-    },
+        }
+    }
 }
 

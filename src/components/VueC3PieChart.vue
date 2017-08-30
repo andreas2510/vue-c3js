@@ -1,6 +1,4 @@
-<style>
-    @import url("./../../node_modules/c3/c3.min.css");
-</style>
+<style></style>
 
 <template>
     <div>
@@ -13,37 +11,18 @@
     import VueC3Base from './../mixins/VueC3Base'
     import VueC3PieDonutGaugeBase from './../mixins/VueC3PieDonutGaugeBase'
 
-    var c3 = require("c3")
-
     export default {
 
         mixins: [VueC3Base, VueC3PieDonutGaugeBase],
 
         name: "c3-pie-chart",
 
-        props: {
-
-        },
+        props: {},
 
         data: function data() {
             return {
                 chartType: 'pie'
-            };
-        },
-
-        created() {
-        },
-
-        mounted() {
-        },
-
-        methods: {
-        },
-
-        computed: {
-        },
-
-        watch: {
-        },
+            }
+        }
     }
 </script>

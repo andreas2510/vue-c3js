@@ -7,34 +7,10 @@ export default {
 
     name: "c3-spline",
 
-    props: {
-
-    },
-
     data: function data() {
         return {
             type: 'spline'
-        };
-    },
-
-    mounted() {
-
-    },
-
-    methods: {
-
-    },
-
-    computed: {
-
-    },
-
-    filters: {
-
-    },
-
-    watch: {
-
-    },
+        }
+    }
 }
 

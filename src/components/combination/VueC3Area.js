@@ -7,34 +7,10 @@ export default {
 
     name: "c3-area",
 
-    props: {
-
-    },
-
     data: function data() {
         return {
             type: 'area'
-        };
-    },
-
-    mounted() {
-
-    },
-
-    methods: {
-
-    },
-
-    computed: {
-
-    },
-
-    filters: {
-
-    },
-
-    watch: {
-
-    },
+        }
+    }
 }
 

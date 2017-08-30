@@ -2,7 +2,7 @@
   "name": "vue-c3js",
   "version": "0.0.1",
   "description": "c3js wrapper for vuejs.",
-  "main": "./src/index.js",
+  "main": "./dist/vue-c3js.js",
   "scripts": {
     "test": "test",
     "dev:hot": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
@@ -19,7 +19,7 @@
     "url": "https://github.com/andreas2510/vue-c3js/issues"
   },
   "homepage": "https://github.com/andreas2510/vue-c3js#readme",
-  "dependencies": {
+  "peerDependencies": {
     "c3": "^0.4.15",
     "vue": "^2.0.0"
   },

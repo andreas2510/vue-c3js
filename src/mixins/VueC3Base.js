@@ -116,6 +116,27 @@ export default {
         axisXCategories: {
             type: Array
         },
+        axisXTickCentered: {
+            type: Boolean
+        },
+        axisXTickCount: {
+            type: Number
+        },
+        axisXTickFit: {
+            type: Boolean
+        },
+        axisXTickValues: {
+            type: Array
+        },
+        axisXTickRotate: {
+            type: Number
+        },
+        axisXTickInner: {
+            type: Boolean
+        },
+        axisXTickFormatted: {
+            type: String
+        },
         hideYAxis: {
             type: Boolean
         },
@@ -395,7 +416,8 @@ export default {
             if (this.axisRotated) {
                 _axisOptions.rotated = this.axisRotated
             }
-            if (this.hideXAxis || this.propExists(this.axisXType) || this.xAxisLocaltime || this.propExists(this.axisXCategories)) {
+            if (this.hideXAxis || this.propExists(this.axisXType) || this.xAxisLocaltime || this.propExists(this.axisXCategories) ||
+                this.axisXTickInner || this.axisXTickFit || this.axisXTickCentered || this.propExists(this.axisXTickCount) || this.propExists(this.axisXTickRotate) || this.propExists(this.axisXTickValues)) {
                 _axisOptions.x = {}
                 if (this.hideXAxis) {
                     _axisOptions.x.show = !this.hideXAxis
@@ -408,6 +430,35 @@ export default {
                 }
                 if (this.propExists(this.axisXCategories)) {
                     _axisOptions.x.categories = this.axisXCategories
+                }
+
+                if (this.axisXTickInner || this.axisXTickFit || this.axisXTickCentered || this.propExists(this.axisXTickCount) || this.propExists(this.axisXTickRotate) || this.propExists(this.axisXTickValues)) {
+                    _axisOptions.x.tick = {}
+                    if (this.axisXTickCentered) {
+                        _axisOptions.x.tick.centered = this.axisXTickCentered
+                    }
+                    if (this.axisXTickFit) {
+                        _axisOptions.x.tick.fit = this.axisXTickFit
+                    }
+                    if (this.axisXTickInner) {
+                        _axisOptions.x.tick.outer = !this.axisXTickInner
+                    }
+                    if (this.propExists(this.axisXTickValues)) {
+                        _axisOptions.x.tick.values = this.axisXTickValues
+                    }
+                    if (this.propExists(this.axisXTickRotate)) {
+                        _axisOptions.x.tick.rotate = this.axisXTickRotate
+                    }
+                    if (this.propExists(this.axisXTickCount)) {
+                        _axisOptions.x.tick.count = this.axisXTickCount
+                    }
+                    // _axisOptions.x.tick.format = function (x) {
+                    //     self.$emit('axis-x-tick-format', x)
+                    //     if (self.propExists(self.axisXTickFormatted)) {
+                    //         return self.axisXTickFormatted
+                    //     }
+                    //     return x
+                    // }
                 }
             }
             if (this.hideYAxis) {

@@ -7,34 +7,10 @@ export default {
 
     name: "c3-pie",
 
-    props: {
-
-    },
-
     data: function data() {
         return {
             type: 'pie'
-        };
-    },
-
-    mounted() {
-
-    },
-
-    methods: {
-
-    },
-
-    computed: {
-
-    },
-
-    filters: {
-
-    },
-
-    watch: {
-
-    },
+        }
+    }
 }
 

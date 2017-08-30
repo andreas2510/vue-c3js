@@ -7,34 +7,10 @@ export default {
 
     name: "c3-gauge",
 
-    props: {
-
-    },
-
     data: function data() {
         return {
             type: 'gauge'
-        };
-    },
-
-    mounted() {
-
-    },
-
-    methods: {
-
-    },
-
-    computed: {
-
-    },
-
-    filters: {
-
-    },
-
-    watch: {
-
-    },
+        }
+    }
 }
 

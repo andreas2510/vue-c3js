@@ -1,6 +1,4 @@
-<style>
-    @import url("./../../node_modules/c3/c3.min.css");
-</style>
+<style></style>
 
 <template>
     <div>
@@ -21,29 +19,12 @@
 
         name: "c3-gauge-chart",
 
-        props: {
-
-        },
+        props: {},
 
         data: function data() {
             return {
                 chartType: 'gauge'
-            };
-        },
-
-        created() {
-        },
-
-        mounted() {
-        },
-
-        methods: {
-        },
-
-        computed: {
-        },
-
-        watch: {
-        },
+            }
+        }
     }
 </script>

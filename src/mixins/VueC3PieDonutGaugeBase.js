@@ -1,8 +1,6 @@
 
 export default {
 
-    // replace: true,
-
     props: {
         hideLabel: {
             type: Boolean
@@ -15,7 +13,7 @@ export default {
     data: function data() {
         return {
 
-        };
+        }
     },
 
     mounted() {},

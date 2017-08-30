@@ -33,6 +33,12 @@
             <c3-bar-chart
                 id="line-chart"
                 :rows="rows"
+                axis-x-tick-fit
+                axis-x-tick-centered
+                axis-x-tick-inner
+                axis-x-tick-count="5"
+                @axisXTickFormat="axisXTickFormatted"
+                :axis-x-tick-formatted="axisXTickValue"
                 >
                 <!--
                 :color-pattern="['#1f77b4', '#aec7e8']"
