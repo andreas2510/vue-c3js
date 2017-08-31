@@ -37,7 +37,8 @@ Color pattern (`Array`)
 <c3-bar-chart id="mychart" :rows="rows" :color-pattern="['#1f77b4', '#aec7e8']">
 ````
 
-Transition duration (`Number`)
+#### Transition duration (`Number`)
+Set duration of transition (in milliseconds) for chart animation.
 ````vue
 <c3-bar-chart id="mychart" :rows="rows" transition-duration="1500">
 ````
