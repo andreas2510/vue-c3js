@@ -32,12 +32,12 @@ Padding (top, right, bottom, left)
 <c3-bar-chart id="mychart" :rows="rows" padding-top="50" padding-right="50" padding-bottom="50" padding-left="50">
 ````
 
-Color pattern `Array`
+Color pattern (`Array`)
 ````vue
 <c3-bar-chart id="mychart" :rows="rows" :color-pattern="['#1f77b4', '#aec7e8']">
 ````
 
-Transition duration `Number`
+Transition duration (`Number`)
 ````vue
 <c3-bar-chart id="mychart" :rows="rows" transition-duration="1500">
 ````
