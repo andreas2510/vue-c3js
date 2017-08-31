@@ -21,22 +21,26 @@ Vue.use(VueC3Js)
 c3js has many options, not all of them are supported yet.
 
 ### Chart options
-- size (width and height)
-  ```bash
-  <c3-bar-chart id="mychart" :rows="rows" width="480" height="320">
-  ```
-- padding (top, right, bottom, left)
-  ```bash
-  <c3-bar-chart id="mychart" :rows="rows" padding-top="50" padding-right="50" padding-bottom="50" padding-left="50">
-  ```
-- color pattern
-  ```bash
-  <c3-bar-chart id="mychart" :rows="rows" :color-pattern="['#1f77b4', '#aec7e8']">
-  ```
-- transition duration
-  ```bash
-  <c3-bar-chart id="mychart" :rows="rows" transition-duration="1500">
-  ```
+
+Size (width and height)
+```bash
+<c3-bar-chart id="mychart" :rows="rows" width="480" height="320">
+```
+
+Padding (top, right, bottom, left)
+```bash
+<c3-bar-chart id="mychart" :rows="rows" padding-top="50" padding-right="50" padding-bottom="50" padding-left="50">
+```
+
+Color pattern
+```bash
+<c3-bar-chart id="mychart" :rows="rows" :color-pattern="['#1f77b4', '#aec7e8']">
+```
+
+Transition duration
+```bash
+<c3-bar-chart id="mychart" :rows="rows" transition-duration="1500">
+```
 
 ### Axis options
 ...
