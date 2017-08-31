@@ -22,7 +22,7 @@ c3js has many options, not all of them are supported yet.
 
 ### Chart options
 
-Size (width and height)
+Size (`width` and `height`)
 ````vue
 <c3-bar-chart id="mychart" :rows="rows" width="480" height="320">
 ````
