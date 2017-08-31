@@ -12,7 +12,7 @@ npm install --save https://github.com/andreas2510/vue-c3js.git
 ## Quick Start
 Include in your main script.
 ```bash
-import VueC3Js from './../dist/vue-c3js.js'
+import VueC3Js from 'vue-c3js'
 Vue.use(VueC3Js)
 ```
 
@@ -22,15 +22,63 @@ c3js has many options, not all of them are supported yet.
 
 ### Chart options
 - size (width and height)
+  ```bash
+  <c3-bar-chart id="mychart" :rows="rows" width="480" height="320">
+  ```
 - padding (top, right, bottom, left)
+  ```bash
+  <c3-bar-chart id="mychart" :rows="rows" padding-top="50" padding-right="50" padding-bottom="50" padding-left="50">
+  ```
 - color pattern
+  ```bash
+  <c3-bar-chart id="mychart" :rows="rows" :color-pattern="['#1f77b4', '#aec7e8']">
+  ```
 - transition duration
+  ```bash
+  <c3-bar-chart id="mychart" :rows="rows" transition-duration="1500">
+  ```
 
-### Limitations
-- Load data from url [ref](http://c3js.org/reference.html#data-url)
+### Axis options
+...
 
-### Todo
+### Grid options
+...
+
+### Legend options
+...
+
+### Tooltip options
+...
+
+### Subchart options
+...
+
+### Zoom options
+...
+
+### Point options
+...
+
+### Line options
+...
+
+### Bar options
+...
+
+### Gauge options
+...
+
+### Pie options
+...
+
+### Donut options
+...
+
+## Todos
 - Support padding for x, y, y2 axes
 - Support tick for y, y2 axes
 - Support default for x, y, y2 axes
 - Support labels for x, y, y2 axes
+
+## Limitations
+- Load data from url [ref](http://c3js.org/reference.html#data-url)
