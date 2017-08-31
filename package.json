@@ -6,8 +6,8 @@
   "scripts": {
     "test": "test",
     "dev:hot": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "example": "cross-env NODE_ENV=production webpack --progress --hide-modules --config  ./build/webpack.config.js",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config  ./build/webpack.prod.js"
+    "example": "webpack --progress --hide-modules --config  ./build/webpack.example.config.js",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config  ./build/webpack.prod.config.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
+    "style-loader": "^0.18.2",
     "vue-loader": "^12.1.0",
     "vue-template-compiler": "^2.3.3",
     "webpack": "^2.6.1",

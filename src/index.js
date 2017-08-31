@@ -1,6 +1,4 @@
-// Base
-
-// Types
+// Chart types
 import VueC3LineChart from './components/VueC3LineChart.vue'
 import VueC3SplineChart from './components/VueC3SplineChart.vue'
 import VueC3StepChart from './components/VueC3StepChart.vue'
@@ -12,7 +10,7 @@ import VueC3PieChart from './components/VueC3PieChart.vue'
 import VueC3DonutChart from './components/VueC3DonutChart.vue'
 import VueC3GaugeChart from './components/VueC3GaugeChart.vue'
 
-// Combination
+// Combination chart & elements
 import VueC3CombinationChart from './components/VueC3CombinationChart.vue'
 import VueC3Line from './components/combination/VueC3Line'
 import VueC3Spline from './components/combination/VueC3Spline'
@@ -25,6 +23,7 @@ import VueC3Pie from './components/combination/VueC3Pie'
 import VueC3Donut from './components/combination/VueC3Donut'
 import VueC3Gauge from './components/combination/VueC3Gauge'
 
+// Config
 import npmCfg from './../package.json'
 
 const components = [
@@ -52,18 +51,18 @@ const components = [
 ]
 
 const install = function(Vue, opts = {}) {
-    if (install.installed) return;
+    // if (install.installed) return;
     components.map(component => {
         Vue.component(component.name, component);
     })
 }
 
 // if (typeof window !== 'undefined' && window.Vue) {
-//     console.log('ELEMENT')
-//     install(window.Vue);
-// };
+//     console.log('VueC3Js')
+//     install(window.Vue)
+// }
 
-const VueC3Charts = {
+const VueC3Js = {
     version: npmCfg.version,
     install,
     VueC3CombinationChart,
@@ -89,21 +88,4 @@ const VueC3Charts = {
     VueC3GaugeChart,
 }
 
-export default VueC3Charts
-
-// module.exports = {
-//     version: npmCfg.version,
-//     install,
-//     VueC3Charts,
-//     VueC3CombinationChart,
-//     VueC3Line,
-//     VueC3Spline,
-//     VueC3Bar,
-//     VueC3Area,
-//     VueC3AreaSpline,
-//     VueC3Scatter,
-//     VueC3Step,
-//     VueC3Pie,
-//     VueC3Donut,
-//     VueC3Gauge,
-// }
+export default VueC3Js

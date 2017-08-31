@@ -1,16 +1,11 @@
-
 import Vue from 'vue'
 
 Vue.config.devtools = true
 
-// Vue.component('c3-chart', require('./components/VueC3Chart.vue'))
-// Vue.component('c3-line', require('./components/VueC3Line'))
-// Vue.component('c3-spline', require('./components/VueC3Spline'))
-
-// import VueC3Chart from 'vue-c3js'
-import VueC3Charts from './../dist/vue-c3js.js'
-// import VueC3Charts from './../src/index.js'
-Vue.use(VueC3Charts)
+// import VueC3Js from 'vue-c3js'
+// import VueC3Js from './../src/index.js'
+import VueC3Js from './../dist/vue-c3js.js'
+Vue.use(VueC3Js)
 
 var app = new Vue({
     el: "#app",
@@ -62,6 +57,21 @@ var app = new Vue({
             ['data', 91.4]
         ],
 
+        // API
+        xGridLines: [
+            {value: 1, text: 'Lable 1'},
+            {value: 3, text: 'Lable 3', position: 'middle'},
+            {value: 4.5, text: 'Lable 4.5', position: 'start'}
+        ],
+        yGridLines: [
+            {value: 50, text: 'Lable 50 for y'},
+            {value: 1300, text: 'Lable 1300 for y2', axis: 'y2', position: 'start'},
+            {value: 350, text: 'Lable 350 for y', position: 'middle'}
+        ],
+        regions: [
+            {axis: 'x', start: 2, end: 4, class: 'regionX'},
+            {axis: 'y', end: 150, class: 'regionY'}
+        ],
     },
     mounted() {
         var that = this
@@ -102,8 +112,5 @@ var app = new Vue({
             console.log(x)
             this.axisXTickValue = '€' + x
         },
-    },
-    computed: {
-
     }
 })

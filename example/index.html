@@ -33,17 +33,22 @@
             <c3-bar-chart
                 id="line-chart"
                 :rows="rows"
+                :regions="regions"
+                enable-selection
+                >
+                <!--
+                padding-right="150"
+                padding-left="150"
+                :color-pattern="['#1f77b4', '#aec7e8']"
+                disable-interaction
+                transition-duration="1500"
+
                 axis-x-tick-fit
                 axis-x-tick-centered
                 axis-x-tick-inner
                 axis-x-tick-count="5"
                 @axisXTickFormat="axisXTickFormatted"
                 :axis-x-tick-formatted="axisXTickValue"
-                >
-                <!--
-                :color-pattern="['#1f77b4', '#aec7e8']"
-                disable-interaction
-                transition-duration="1500"
 
                 labels
                 :order="'asc'"
@@ -80,6 +85,8 @@
 
                 show-grid-x
                 show-grid-y
+                :x-grids="xGridLines"
+                :y-grids="yGridLines"
 
                 hide-legend
                 legend-position="right"
@@ -104,6 +111,7 @@
                 bar-width="40"
                 bar-width-ratio="0.1"
                 not-zero-based
+
                 -->
 
             </c3-bar-chart>

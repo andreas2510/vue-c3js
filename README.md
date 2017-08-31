@@ -16,3 +16,9 @@ c3js has many options, not all of them are supported yet.
 
 ### Limitations
 - Load data from url [ref](http://c3js.org/reference.html#data-url)
+
+### Todo
+- Support padding for x, y, y2 axes
+- Support tick for y, y2 axes
+- Support default for x, y, y2 axes
+- Support labels for x, y, y2 axes

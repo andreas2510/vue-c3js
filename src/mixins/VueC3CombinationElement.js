@@ -35,14 +35,12 @@ export default {
     },
 
     methods: {
-
         optionExists: function(option) {
             return (undefined !== option && null !== option && '' !== option) ? true : false
         },
     },
 
     computed: {
-
         options: function() {
             var _options = {}
 
@@ -64,9 +62,5 @@ export default {
 
             return _options
         }
-    },
-
-    watch: {
-
     },
 }

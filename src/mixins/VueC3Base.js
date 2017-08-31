@@ -1,9 +1,12 @@
 /*
- * Base mixin for the charts. The mixin deals with common things across the
- * line of components such as options, data etc.
+ * Base mixin for the charts. The mixin deals with common functionality across
+ * the line of components such as options, data, reload functions, loading the
+ * c3js styles etc.
  */
 
 var c3 = require("c3")
+var c3Styles = require("c3/c3.min.css")
+//import './../../node_modules/c3/c3.min.css'
 
 export default {
 
@@ -22,18 +25,18 @@ export default {
         height: {
             type: Number
         },
-        // paddingTop: {
-        //     type: Number
-        // },
-        // paddingRight: {
-        //     type: Number
-        // },
-        // paddingBottom: {
-        //     type: Number
-        // },
-        // paddingLeft: {
-        //     type: Number
-        // },
+        paddingTop: {
+            type: Number
+        },
+        paddingRight: {
+            type: Number
+        },
+        paddingBottom: {
+            type: Number
+        },
+        paddingLeft: {
+            type: Number
+        },
         colorPattern: {
             type: Array
         },
@@ -137,16 +140,72 @@ export default {
         axisXTickFormatted: {
             type: String
         },
+        axisXMax: {
+            type: Number
+        },
+        axisXMin: {
+            type: Number
+        },
+        axisXHeight: {
+            type: Number
+        },
         hideYAxis: {
             type: Boolean
+        },
+        axisYInner: {
+            type: Boolean
+        },
+        axisYInverted: {
+            type: Boolean
+        },
+        axisYCenter: {
+            type: Number
+        },
+        axisYMax: {
+            type: Number
+        },
+        axisYMin: {
+            type: Number
+        },
+        axisYHeight: {
+            type: Number
+        },
+        showY2Axis: {
+            type: Boolean
+        },
+        axisY2Inner: {
+            type: Boolean
+        },
+        axisY2Inverted: {
+            type: Boolean
+        },
+        axisY2Center: {
+            type: Number
+        },
+        axisY2Max: {
+            type: Number
+        },
+        axisY2Min: {
+            type: Number
         },
 
         // Grid
         showGridX: {
             type: Boolean
         },
+        xGrids: {
+            type: Array
+        },
         showGridY: {
             type: Boolean
+        },
+        yGrids: {
+            type: Array
+        },
+
+        // Regions
+        regions: {
+            type: Array
         },
 
         // Legend
@@ -181,7 +240,7 @@ export default {
             type: Boolean
         },
 
-        // Pint
+        // Point
         hidePoint: {
             type: Boolean
         },
@@ -226,22 +285,22 @@ export default {
             return (undefined !== prop && null !== prop) ? true : false
             return (undefined !== prop && null !== prop && '' !== prop) ? true : false
         },
-        mergeObjects: function(obj, src) {
-            Object.keys(src).forEach(function(key) { obj[key] = src[key]; });
-            return obj;
-        },
-        removeEmptyKeys: function(objct) {
-            var that = this
-            var obj = objct
-            Object.keys(obj).forEach(key => {
-                if (obj[key] && typeof obj[key] === 'object' && Object.keys(obj[key]).length > 0) {
-                    that.removeEmptyKeys(obj[key])
-                } else if (typeof obj[key] !== 'boolean' && typeof obj[key] !== 'number' && (null === obj[key] || undefined === obj[key] || Object.keys(obj[key]).length === 0)) {
-                    delete obj[key]
-                }
-            });
-            return obj;
-        },
+        // mergeObjects: function(obj, src) {
+        //     Object.keys(src).forEach(function(key) { obj[key] = src[key]; });
+        //     return obj;
+        // },
+        // removeEmptyKeys: function(objct) {
+        //     var that = this
+        //     var obj = objct
+        //     Object.keys(obj).forEach(key => {
+        //         if (obj[key] && typeof obj[key] === 'object' && Object.keys(obj[key]).length > 0) {
+        //             that.removeEmptyKeys(obj[key])
+        //         } else if (typeof obj[key] !== 'boolean' && typeof obj[key] !== 'number' && (null === obj[key] || undefined === obj[key] || Object.keys(obj[key]).length === 0)) {
+        //             delete obj[key]
+        //         }
+        //     });
+        //     return obj;
+        // },
 
         // Chart Object
         // Stores the chart data to an accessible format to make available
@@ -260,6 +319,15 @@ export default {
 
         generateChart: function() {
             var chart = c3.generate(this.options)
+            if (this.propExists(this.xGrids)) {
+                chart.xgrids(this.xGrids)
+            }
+            if (this.propExists(this.yGrids)) {
+                chart.ygrids(this.yGrids)
+            }
+            if (this.propExists(this.regions)) {
+                chart.regions(this.regions)
+            }
             this.setChartObject(chart)
         },
         refresh: function() {
@@ -308,6 +376,21 @@ export default {
                 }
                 if (this.propExists(this.height)) {
                     _options.size.height = this.height
+                }
+            }
+            if (this.propExists(this.paddingTop) || this.propExists(this.paddingRight) || this.propExists(this.paddingBottom) || this.propExists(this.paddingLeft)) {
+                _options.padding = {}
+                if (this.propExists(this.paddingTop)) {
+                    _options.padding.top = parseInt(this.paddingTop)
+                }
+                if (this.propExists(this.paddingRight)) {
+                    _options.padding.right = parseInt(this.paddingRight)
+                }
+                if (this.propExists(this.paddingBottom)) {
+                    _options.padding.bottom = parseInt(this.paddingBottom)
+                }
+                if (this.propExists(this.paddingLeft)) {
+                    _options.padding.left = parseInt(this.paddingLeft)
                 }
             }
             if (this.propExists(this.colorPattern)) {
@@ -461,9 +544,29 @@ export default {
                     // }
                 }
             }
-            if (this.hideYAxis) {
+            if (this.hideYAxis || this.axisYInverted || this.axisYInner || this.propExists(this.axisYHeight) || this.propExists(this.axisYMin) || this.propExists(this.axisYMax) || this.propExists(this.axisYCenter)) {
                 _axisOptions.y = {}
-                _axisOptions.y.show = !this.hideYAxis
+                if (!this.hideYAxis) {
+                    _axisOptions.y.show = !this.hideYAxis
+                }
+                if (this.axisYInner) {
+                    _axisOptions.y.inner = this.axisYInner
+                }
+                if (this.axisYInverted) {
+                    _axisOptions.y.inverted = this.axisYInverted
+                }
+                if (this.propExists(this.axisYHeight)) {
+                    _axisOptions.y.height = this.axisYHeight
+                }
+                if (this.propExists(this.axisYMin)) {
+                    _axisOptions.y.min = this.axisYMin
+                }
+                if (this.propExists(this.axisYMax)) {
+                    _axisOptions.y.max = this.axisYMax
+                }
+                if (this.propExists(this.axisYCenter)) {
+                    _axisOptions.y.center = this.axisYCenter
+                }
             }
 
             // ----------------------------------------------------------------
@@ -906,19 +1009,13 @@ export default {
 
     watch: {
         columns: function(newVal, oldVal) {
-            if (this.isReady) {
-                this.refresh()
-            }
+            if (this.isReady) { this.refresh() }
         },
         rows: function(newVal, oldVal) {
-            if (this.isReady) {
-                this.refresh()
-            }
+            if (this.isReady) { this.refresh() }
         },
         json: function(newVal, oldVal) {
-            if (this.isReady) {
-                this.refresh()
-            }
+            if (this.isReady) { this.refresh() }
         },
     },
 
@@ -926,5 +1023,9 @@ export default {
         round: function (str) {
             return parseFloat(str).toFixed(2)
         },
+    },
+
+    beforeDestroy() {
+        this.getChartObject = this.getChartObject.destroy()
     },
 }
