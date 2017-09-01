@@ -10,17 +10,26 @@ npm install --save https://github.com/andreas2510/vue-c3js.git
 ```
 
 ## Quick Start
-Include in your main script.
+Import the module in your main script.
 ````
 import VueC3Js from 'vue-c3js'
 Vue.use(VueC3Js)
 ````
 
-## Documentation
+Use it within your HTML or vue template.
+````vue
+<c3-bar-chart id="mychart" :columns="columns">
+````
 
+## Props
+The idea is to pass configuration options to c3js as props.
 c3js has many options, not all of them are supported yet.
 
 ### Chart options
+Id (`String`)
+````vue
+<c3-bar-chart id="mychart">
+````
 
 Size (`width` and `height`)
 ````vue
