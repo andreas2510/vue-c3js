@@ -488,7 +488,7 @@ export default {
 
             _drawableData.onclick = function (d, element) { self.$emit('data-onclick', d) }
             _drawableData.onmouseover = function (d, element) { self.$emit('data-onmouseover', d) }
-            _drawableData.onmouseover = function (d, element) { self.$emit('data-onmouseout', d) }
+            _drawableData.onmouseout = function (d, element) { self.$emit('data-onmouseout', d) }
 
             // ----------------------------------------------------------------
             // Axis Options
@@ -601,7 +601,7 @@ export default {
             _legendOptions.item = {}
             _legendOptions.item.onclick = function (id) { self.$emit('legend-onclick', id) }
             _legendOptions.item.onmouseover = function (id) { self.$emit('legend-onmouseover', id) }
-            _legendOptions.item.onmouseover = function (id) { self.$emit('legend-onmouseout', id) }
+            _legendOptions.item.onmouseout = function (id) { self.$emit('legend-onmouseout', id) }
 
             // ----------------------------------------------------------------
             // Tooltip Options
