@@ -11,15 +11,27 @@ npm install --save https://github.com/andreas2510/vue-c3js.git
 
 ## Quick Start
 Import the module in your main script.
-````
+```javascript
 import VueC3Js from 'vue-c3js'
 Vue.use(VueC3Js)
-````
+```
 
 Then use it within your HTML or vue template. At the very least, you need to specify the `id` of the component and also provide the chart data through **one of the following props**: `columns`, `rows` or `json`.
-````vue
+```javascript
+// In you script/vue template.
+var columns = [
+  ['data1', 30, 20, 50, 40, 60, 50],
+  ['data2', 200, 130, 90, 240, 130, 220],
+  ['data3', 300, 200, 160, 400, 250, 250],
+  ['data4', 200, 130, 90, 240, 130, 220],
+  ['data5', 130, 120, 150, 140, 160, 150],
+  ['data6', 90, 70, 20, 50, 60, 120],
+]
+```
+```vue
+<!-- In your HTML/Vue template -->
 <c3-bar-chart id="mychart" :columns="columns">
-````
+```
 
 ## Props
 The idea is to pass configuration options to c3js through props. c3js has many options, not all of them are supported yet.
