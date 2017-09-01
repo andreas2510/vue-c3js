@@ -83,16 +83,38 @@ The idea is to pass configuration options to c3js through props. c3js has many o
 | transitionDuration | `Number` | transitionDuration. | [transition.duration](http://c3js.org/reference.html#transition-duration) |
 
 ## Events
+c3js events are passed through vue-c3js as standard vue events, which you can listen to in your script.
 
 ### Chart events
 | Event Name | Description | c3js docs |
 |------------|-------------|-----------|
 | oninit | oninit. | [oninit](http://c3js.org/reference.html#oninit) |
-| onrendered | onrendered. | [oninit](http://c3js.org/reference.html#onrendered) |
-| onmouseover | onmouseover. | [oninit](http://c3js.org/reference.html#onmouseover) |
-| onmouseout | onmouseout. | [oninit](http://c3js.org/reference.html#onmouseout) |
-| onresize | onresize. | [oninit](http://c3js.org/reference.html#onresize) |
-| onresized | onresized. | [oninit](http://c3js.org/reference.html#onresized) |
+| onrendered | onrendered. | [onrendered](http://c3js.org/reference.html#onrendered) |
+| onmouseover | onmouseover. | [onmouseover](http://c3js.org/reference.html#onmouseover) |
+| onmouseout | onmouseout. | [onmouseout](http://c3js.org/reference.html#onmouseout) |
+| onresize | onresize. | [onresize](http://c3js.org/reference.html#onresize) |
+| onresized | onresized. | [onresized](http://c3js.org/reference.html#onresized) |
+
+### Data events
+| Event Name | Description | c3js docs |
+|------------|-------------|-----------|
+| onclick | onclick. | [data.onclick](http://c3js.org/reference.html#data-onclick) |
+| onmouseover | onmouseover. | [data.onmouseover](http://c3js.org/reference.html#data-onmouseover) |
+| onmouseout | onmouseout. | [data.onmouseout](http://c3js.org/reference.html#data-onmouseout) |
+
+### Legend events
+| Event Name | Description | c3js docs |
+|------------|-------------|-----------|
+| legend-onclick | legend-onclick. | [legend.item.onclick](http://c3js.org/reference.html#legend-item-onclick) |
+| legend-onmouseover | legend-onmouseover. | [legend.item.onmouseover](http://c3js.org/reference.html#legend-item-onmouseover) |
+| legend-onmouseout | legend-onmouseout. | [legend.item.onmouseout](http://c3js.org/reference.html#legend-item-onmouseout) |
+
+### Zoom events
+| Event Name | Description | c3js docs |
+|------------|-------------|-----------|
+| onzoom | onzoom. | [zoom.onzoom](http://c3js.org/reference.html#zoom-onzoom) |
+| onzoomstart | onzoomstart. | [zoom.onzoomstart](http://c3js.org/reference.html#zoom-onzoomstart) |
+| onzoomend | onzoomend. | [zoom.onzoomend](http://c3js.org/reference.html#zoom-onzoomend) |
 
 
 ### Chart options
