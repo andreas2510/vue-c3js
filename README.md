@@ -68,6 +68,10 @@ var columns = [
 ## Props
 The idea is to pass configuration options to c3js through props. c3js has many options, not all of them are supported yet.
 
+| Prop Name | Type | Description |
+|----------|------|--------------|
+| id | `String` **Required** | A string by which to identify the component.|
+
 ### Chart options
 Id (`String` - **Required**)
 ````vue
