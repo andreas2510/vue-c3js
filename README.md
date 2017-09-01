@@ -26,7 +26,7 @@ The idea is to pass configuration options to c3js as props.
 c3js has many options, not all of them are supported yet.
 
 ### Chart options
-Id (`String`)
+Id (`String` - **Required**)
 ````vue
 <c3-bar-chart id="mychart">
 ````
