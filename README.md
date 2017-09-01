@@ -16,12 +16,10 @@ import VueC3Js from 'vue-c3js'
 Vue.use(VueC3Js)
 ````
 
-Then use it within your HTML or vue template.
+Then use it within your HTML or vue template. At the very least, you need to specify the `id` of the component and also provide the chart data through **one of the following props**: `columns`, `rows` or `json`.
 ````vue
 <c3-bar-chart id="mychart" :columns="columns">
 ````
-
-At the very least, you need to specify the `id` of the component and also provide the chart data through **one of the following props**: `columns`, `rows` or `json`.
 
 ## Props
 The idea is to pass configuration options to c3js through props. c3js has many options, not all of them are supported yet.
