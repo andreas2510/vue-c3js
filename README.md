@@ -68,9 +68,19 @@ var columns = [
 ## Props
 The idea is to pass configuration options to c3js through props. c3js has many options, not all of them are supported yet.
 
-| Prop Name | Type | Description |
-|----------|------|--------------|
-| id | `String` **Required** | A string by which to identify the component.|
+### Chart options
+| Prop Name | Type | Description | c3js docs |
+|-----------|------|-------------|-----------|
+| id | `String` **Required** | A string by which to identify the component. | [bindto](http://c3js.org/reference.html#bindto) |
+| width | `Number` | The widht od the chart. | [size.width](http://c3js.org/reference.html#size-width) |
+| height | `Number` | The widht od the chart. | [size.height](http://c3js.org/reference.html#size-height) |
+| paddingTop | `Number` | paddingTop. | [padding.top](http://c3js.org/reference.html#padding-top) |
+| paddingRight | `Number` | paddingRight. | [padding.right](http://c3js.org/reference.html#padding-right) |
+| paddingBottom | `Number` | paddingBottom. | [padding.bottom](http://c3js.org/reference.html#padding-bottom) |
+| paddingLeft | `Number` | paddingLeft. | [padding.left](http://c3js.org/reference.html#padding-left) |
+| colorPattern | `Array` | colorPattern. | [color.pattern](http://c3js.org/reference.html#color-pattern) |
+| disableInteraction | `Boolean` | disableInteraction. | [interaction.enabled](http://c3js.org/reference.html#interaction-enabled) |
+| transitionDuration | `Number` | transitionDuration. | [transition.duration](http://c3js.org/reference.html#transition-duration) |
 
 ### Chart options
 Id (`String` - **Required**)
