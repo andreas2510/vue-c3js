@@ -82,6 +82,19 @@ The idea is to pass configuration options to c3js through props. c3js has many o
 | disableInteraction | `Boolean` | disableInteraction. | [interaction.enabled](http://c3js.org/reference.html#interaction-enabled) |
 | transitionDuration | `Number` | transitionDuration. | [transition.duration](http://c3js.org/reference.html#transition-duration) |
 
+## Events
+
+### Chart events
+| Event Name | Description | c3js docs |
+|------------|-------------|-----------|
+| oninit | oninit. | [oninit](http://c3js.org/reference.html#oninit) |
+| onrendered | onrendered. | [oninit](http://c3js.org/reference.html#onrendered) |
+| onmouseover | onmouseover. | [oninit](http://c3js.org/reference.html#onmouseover) |
+| onmouseout | onmouseout. | [oninit](http://c3js.org/reference.html#onmouseout) |
+| onresize | onresize. | [oninit](http://c3js.org/reference.html#onresize) |
+| onresized | onresized. | [oninit](http://c3js.org/reference.html#onresized) |
+
+
 ### Chart options
 Id (`String` - **Required**)
 ````vue
