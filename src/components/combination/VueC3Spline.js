@@ -1,16 +1,11 @@
-
 import VueC3CombinationElement from './../../mixins/VueC3CombinationElement'
-
 export default {
-
-    mixins: [VueC3CombinationElement],
-
-    name: "c3-spline",
-
-    data: function data() {
-        return {
-            type: 'spline'
-        }
+  mixins: [VueC3CombinationElement],
+  name: "c3-spline",
+  data: function data() {
+    return {
+      type: 'spline'
     }
+  }
 }
 

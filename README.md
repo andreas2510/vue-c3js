@@ -180,11 +180,20 @@ Set duration of transition (in milliseconds) for chart animation.
 ### Donut options
 ...
 
-## Todos
-- Support padding for x, y, y2 axes
-- Support tick for y, y2 axes
-- Support default for x, y, y2 axes
-- Support labels for x, y, y2 axes
-
-## Limitations
-- Load data from url [ref](http://c3js.org/reference.html#data-url)
+## c3js options not currently supported
+- [data.url](http://c3js.org/reference.html#data-url)
+- [data.mimeType](http://c3js.org/reference.html#data-mimeType)
+- [data.keys](http://c3js.org/reference.html#data-keys)
+- [data.xs](http://c3js.org/reference.html#data-xs)
+- [axis.x.localtime](http://c3js.org/reference.html#axis-x-localtime)
+- [axis.x.tick.culling](http://c3js.org/reference.html#axis-x-tick-culling)
+- [axis.x.tick.culling.max](http://c3js.org/reference.html#axis-x-tick-culling-max)
+- [axis.x.extent](http://c3js.org/reference.html#axis-x-extent)
+- [axis.x.label](http://c3js.org/reference.html#axis-x-label)
+- [axis.x.padding](http://c3js.org/reference.html#axis-x-padding)
+- [tooltip.format.title](http://c3js.org/reference.html#tooltip-format-title)
+- [tooltip.format.name](http://c3js.org/reference.html#tooltip-format-name)
+- [tooltip.format.value](http://c3js.org/reference.html#tooltip-format-value)
+- [tooltip.position](http://c3js.org/reference.html#tooltip-position)
+- [tooltip.contents](http://c3js.org/reference.html#tooltip-contents)
+- [pie/donut/gauge.label.format](http://c3js.org/reference.html#pie-label-format)

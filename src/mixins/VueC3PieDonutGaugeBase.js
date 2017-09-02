@@ -1,26 +1,16 @@
-
 export default {
-
-    props: {
-        hideLabel: {
-            type: Boolean
-        },
-        disableExpand: {
-            type: Boolean
-        },
+  props: {
+    hideLabel: {
+      type: Boolean
     },
-
-    data: function data() {
-        return {
-
-        }
+    disableExpand: {
+      type: Boolean
     },
-
-    mounted() {},
-
-    methods: {},
-
-    computed: {},
-
-    watch: {},
+    labelThreshold: {
+      type: Number
+    }
+  },
+  data: function data() {
+    return {}
+  },
 }

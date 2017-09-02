@@ -1,66 +1,66 @@
 
 export default {
 
-    replace: true,
+  replace: true,
 
-    props: {
-        id: {
-            type: String
-        },
-        prop: {
-            type: String
-        },
-        color: {
-            type: String
-        },
-        name: {
-            type: String
-        },
-        customClass: {
-            type: String
-        },
-        groups: {
-            type: String
-        }
+  props: {
+    id: {
+      type: String
     },
-
-    data: function data() {
-        return {
-            type: ''
-        };
+    prop: {
+      type: String
     },
-
-    mounted() {
-        this.$parent.$emit('c3-chart-element-mounted', this.type, this.prop, this.options)
+    color: {
+      type: String
     },
-
-    methods: {
-        optionExists: function(option) {
-            return (undefined !== option && null !== option && '' !== option) ? true : false
-        },
+    name: {
+      type: String
     },
-
-    computed: {
-        options: function() {
-            var _options = {}
-
-            if (this.optionExists(this.color)) {
-                _options.color = this.color
-            }
-
-            if (this.optionExists(this.name)) {
-                _options.name = this.name
-            }
-
-            if (this.optionExists(this.customClass)) {
-                _options.customClass = this.customClass
-            }
-
-            if (this.optionExists(this.groups)) {
-                _options.groups = this.groups
-            }
-
-            return _options
-        }
+    customClass: {
+      type: String
     },
+    groups: {
+      type: String
+    }
+  },
+
+  data: function data() {
+    return {
+      type: ''
+    };
+  },
+
+  mounted() {
+    this.$parent.$emit('c3-chart-element-mounted', this.type, this.prop, this.options)
+  },
+
+  methods: {
+    optionExists: function(option) {
+      return (undefined !== option && null !== option && '' !== option) ? true : false
+    },
+  },
+
+  computed: {
+    options: function() {
+      var _options = {}
+
+      if (this.optionExists(this.color)) {
+        _options.color = this.color
+      }
+
+      if (this.optionExists(this.name)) {
+        _options.name = this.name
+      }
+
+      if (this.optionExists(this.customClass)) {
+        _options.customClass = this.customClass
+      }
+
+      if (this.optionExists(this.groups)) {
+        _options.groups = this.groups
+      }
+
+      return _options
+    }
+  },
 }
